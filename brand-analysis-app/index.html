@@ -170,7 +170,7 @@
             <div class="module-container market-analysis-module">
                 <div class="module-header">
                     <h2 class="module-title">商圈调研分析</h2>
-                    <p class="module-subtitle">基于AI智能分析商圈调研报告</p>
+                    <p class="module-subtitle">基于竞争对手分析的商圈调研报告</p>
                 </div>
 
                 <!-- 商圈调研分析 - 输入表单区域 -->
@@ -185,98 +185,25 @@
 
                                 <div class="market-form-row">
                                     <div class="market-form-group">
-                                        <label for="market-areaName">商圈名称 <span class="required">*</span></label>
+                                        <label for="market-areaName">店铺名称 <span class="required">*</span></label>
                                         <input type="text" id="market-areaName" name="areaName" required
-                                               placeholder="请输入商圈名称" maxlength="50">
+                                               placeholder="请输入店铺名称" maxlength="50">
                                         <div class="error-message" id="market-areaName-error"></div>
                                     </div>
 
                                     <div class="market-form-group">
-                                        <label for="market-location">地理位置 <span class="required">*</span></label>
+                                        <label for="market-location">经营品类 <span class="required">*</span></label>
                                         <input type="text" id="market-location" name="location" required
-                                               placeholder="请输入具体地理位置，如：北京市朝阳区三里屯" maxlength="100">
+                                               placeholder="请输入经营品类，如：中式快餐、奶茶饮品、烘焙甜品等" maxlength="100">
                                         <div class="error-message" id="market-location-error"></div>
                                     </div>
                                 </div>
 
                                 <div class="market-form-group">
-                                    <label for="market-areaType">商圈类型</label>
-                                    <select id="market-areaType" name="areaType" class="market-select">
-                                        <option value="">请选择商圈类型</option>
-                                        <option value="商务区">商务区</option>
-                                        <option value="购物中心">购物中心</option>
-                                        <option value="住宅区">住宅区</option>
-                                        <option value="学校周边">学校周边</option>
-                                        <option value="交通枢纽">交通枢纽</option>
-                                        <option value="旅游景点">旅游景点</option>
-                                        <option value="工业园区">工业园区</option>
-                                        <option value="混合区域">混合区域</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <!-- 详细信息 -->
-                            <div class="market-form-section">
-                                <h4 class="market-form-section-title">详细信息</h4>
-
-                                <div class="market-form-row">
-                                    <div class="market-form-group">
-                                        <label for="market-population">人流量情况</label>
-                                        <select id="market-population" name="population" class="market-select">
-                                            <option value="">请选择人流量</option>
-                                            <option value="高密度">高密度（繁华地段）</option>
-                                            <option value="中密度">中密度（一般地段）</option>
-                                            <option value="低密度">低密度（偏僻地段）</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="market-form-group">
-                                        <label for="market-competition">竞争情况</label>
-                                        <select id="market-competition" name="competition" class="market-select">
-                                            <option value="">请选择竞争情况</option>
-                                            <option value="激烈">激烈（同类店铺很多）</option>
-                                            <option value="中等">中等（有一定竞争）</option>
-                                            <option value="较少">较少（竞争对手不多）</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="market-form-group">
-                                    <label for="market-targetCustomers">主要客群</label>
-                                    <div class="market-checkbox-group">
-                                        <label class="market-checkbox-item">
-                                            <input type="checkbox" name="targetCustomers" value="上班族">
-                                            <span>上班族</span>
-                                        </label>
-                                        <label class="market-checkbox-item">
-                                            <input type="checkbox" name="targetCustomers" value="学生">
-                                            <span>学生</span>
-                                        </label>
-                                        <label class="market-checkbox-item">
-                                            <input type="checkbox" name="targetCustomers" value="居民">
-                                            <span>居民</span>
-                                        </label>
-                                        <label class="market-checkbox-item">
-                                            <input type="checkbox" name="targetCustomers" value="游客">
-                                            <span>游客</span>
-                                        </label>
-                                        <label class="market-checkbox-item">
-                                            <input type="checkbox" name="targetCustomers" value="购物者">
-                                            <span>购物者</span>
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <div class="market-form-group">
-                                    <label for="market-features">商圈特色</label>
-                                    <textarea id="market-features" name="features" rows="3"
-                                              placeholder="请描述商圈的特色和优势，如：交通便利、消费水平、周边设施等" maxlength="500"></textarea>
-                                </div>
-
-                                <div class="market-form-group">
-                                    <label for="market-challenges">面临挑战</label>
-                                    <textarea id="market-challenges" name="challenges" rows="3"
-                                              placeholder="请描述商圈面临的挑战和问题，如：租金高、停车难、竞争激烈等" maxlength="500"></textarea>
+                                    <label for="market-areaType">店铺地址 <span class="required">*</span></label>
+                                    <input type="text" id="market-areaType" name="areaType" required
+                                           placeholder="请输入店铺具体地址，如：北京市朝阳区三里屯太古里" maxlength="100">
+                                    <div class="error-message" id="market-areaType-error"></div>
                                 </div>
                             </div>
 
@@ -284,7 +211,8 @@
                             <div class="market-form-section">
                                 <h4 class="market-form-section-title">竞争对手文档分析（可选）</h4>
                                 <p class="market-form-description">
-                                    上传包含竞争对手信息的文档（支持图片、Excel、PDF、TXT等格式），AI将自动分析竞争对手的产品、定价策略，并为您提供针对性的优化建议。
+                                    上传包含竞争对手信息的文本文档（目前仅支持TXT格式），AI将自动分析竞争对手的产品、定价策略，并为您提供针对性的优化建议。
+                                    <br><small style="color: #666;">注意：DeepSeek API目前不支持图片、PDF等格式的直接分析，请将内容转换为文本格式后上传。</small>
                                 </p>
 
                                 <div class="market-form-group">
@@ -298,12 +226,12 @@
                                     <label for="market-document">竞争对手文档</label>
                                     <div class="market-file-upload-area" id="market-file-upload-area">
                                         <input type="file" id="market-document" name="document"
-                                               accept=".jpg,.jpeg,.png,.gif,.pdf,.xlsx,.xls,.txt,.doc,.docx"
+                                               accept=".txt"
                                                style="display: none;">
                                         <div class="market-file-upload-content">
                                             <i class="fas fa-cloud-upload-alt market-upload-icon"></i>
-                                            <p class="market-upload-text">点击上传或拖拽文档到此处</p>
-                                            <p class="market-upload-hint">支持图片、PDF、Excel、Word、TXT等格式，最大10MB</p>
+                                            <p class="market-upload-text">点击上传或拖拽TXT文档到此处</p>
+                                            <p class="market-upload-hint">仅支持TXT文本格式，最大10MB</p>
                                         </div>
                                         <div class="market-file-preview" id="market-file-preview" style="display: none;">
                                             <div class="market-file-info">

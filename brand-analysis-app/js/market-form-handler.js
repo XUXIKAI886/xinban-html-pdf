@@ -28,35 +28,19 @@ class MarketFormHandler {
                 required: true,
                 minLength: 2,
                 maxLength: 50,
-                message: '商圈名称必须填写，长度在2-50个字符之间'
+                message: '店铺名称必须填写，长度在2-50个字符之间'
             },
             location: {
                 required: true,
-                minLength: 5,
+                minLength: 2,
                 maxLength: 100,
-                message: '地理位置必须填写，长度在5-100个字符之间'
+                message: '经营品类必须填写，长度在2-100个字符之间'
             },
             areaType: {
-                required: false,
-                message: '请选择商圈类型'
-            },
-            population: {
-                required: false,
-                message: '请选择人流量情况'
-            },
-            competition: {
-                required: false,
-                message: '请选择竞争情况'
-            },
-            features: {
-                required: false,
-                maxLength: 500,
-                message: '商圈特色描述长度不能超过500个字符'
-            },
-            challenges: {
-                required: false,
-                maxLength: 500,
-                message: '面临挑战描述长度不能超过500个字符'
+                required: true,
+                minLength: 5,
+                maxLength: 100,
+                message: '店铺地址必须填写，长度在5-100个字符之间'
             }
         };
     }
@@ -209,14 +193,6 @@ class MarketFormHandler {
         data.areaName = formData.get('areaName')?.trim() || '';
         data.location = formData.get('location')?.trim() || '';
         data.areaType = formData.get('areaType')?.trim() || '';
-        data.population = formData.get('population')?.trim() || '';
-        data.competition = formData.get('competition')?.trim() || '';
-        data.features = formData.get('features')?.trim() || '';
-        data.challenges = formData.get('challenges')?.trim() || '';
-        
-        // 处理目标客群（多选）
-        const targetCustomers = formData.getAll('targetCustomers');
-        data.targetCustomers = targetCustomers.length > 0 ? targetCustomers.join('、') : '';
         
         // 添加时间戳
         data.timestamp = new Date().toISOString();
@@ -376,13 +352,9 @@ class MarketFormHandler {
     validateFile(file) {
         const maxSize = 10 * 1024 * 1024; // 10MB
         const allowedTypes = [
-            'image/jpeg', 'image/jpg', 'image/png', 'image/gif',
-            'application/pdf',
-            'application/vnd.ms-excel',
-            'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-            'text/plain',
-            'application/msword',
-            'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+            'text/plain'
+            // 注意：DeepSeek API目前只支持文本内容，不支持图片、PDF等文件的直接分析
+            // 如需分析其他格式文件，请先将内容转换为文本格式
         ];
 
         if (file.size > maxSize) {
@@ -395,7 +367,7 @@ class MarketFormHandler {
         if (!allowedTypes.includes(file.type)) {
             return {
                 isValid: false,
-                error: '不支持的文件格式，请上传图片、PDF、Excel、Word或TXT文件'
+                error: '目前只支持TXT文本文件。DeepSeek API暂不支持图片、PDF等格式的直接分析，请将内容转换为文本格式后上传。'
             };
         }
 

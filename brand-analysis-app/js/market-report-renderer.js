@@ -58,12 +58,16 @@ class MarketReportRenderer {
                     <h1 class="market-report-title">商圈调研分析报告</h1>
                     <div class="market-report-meta">
                         <div class="market-meta-item">
-                            <span class="market-meta-label">商圈名称:</span>
+                            <span class="market-meta-label">店铺名称:</span>
                             <span class="market-meta-value">${marketInfo.areaName || marketData.areaName}</span>
                         </div>
                         <div class="market-meta-item">
-                            <span class="market-meta-label">地理位置:</span>
+                            <span class="market-meta-label">经营品类:</span>
                             <span class="market-meta-value">${marketInfo.location || marketData.location}</span>
+                        </div>
+                        <div class="market-meta-item">
+                            <span class="market-meta-label">店铺地址:</span>
+                            <span class="market-meta-value">${marketInfo.areaType || marketData.areaType}</span>
                         </div>
                         <div class="market-meta-item">
                             <span class="market-meta-label">分析日期:</span>
@@ -81,7 +85,13 @@ class MarketReportRenderer {
                 
                 <!-- 分析维度 -->
                 ${this.renderAnalysisDimensions(analysis)}
-                
+
+                <!-- 文档分析 -->
+                ${this.renderDocumentAnalysisSection(analysisData.documentAnalysis)}
+
+                <!-- 优化建议 -->
+                ${this.renderRecommendationsSection(analysisData.recommendations)}
+
                 <!-- 总结建议 -->
                 ${this.renderConclusionSection(analysisData)}
                 
@@ -120,17 +130,12 @@ class MarketReportRenderer {
      * 渲染分析维度
      */
     renderAnalysisDimensions(analysis) {
+        // 新的竞争对手文档分析格式，只有2个维度
         const dimensions = [
-            { key: 'location', icon: '📍', title: '地理位置分析' },
-            { key: 'traffic', icon: '👥', title: '人流量与客群分析' },
             { key: 'competition', icon: '⚔️', title: '竞争环境分析' },
-            { key: 'business', icon: '🏢', title: '商业业态分析' },
-            { key: 'consumption', icon: '💰', title: '消费水平分析' },
-            { key: 'potential', icon: '📈', title: '发展潜力分析' },
-            { key: 'risk', icon: '⚠️', title: '投资风险分析' },
-            { key: 'suggestions', icon: '💡', title: '经营建议' }
+            { key: 'opportunities', icon: '📈', title: '市场机会分析' }
         ];
-        
+
         return dimensions.map(dimension => {
             const data = analysis[dimension.key] || {};
             return `
@@ -279,6 +284,125 @@ class MarketReportRenderer {
         return this.reportContainer ? this.reportContainer.innerHTML : '';
     }
     
+    /**
+     * 渲染文档分析部分
+     * @param {Object} documentAnalysis - 文档分析数据
+     * @returns {string} - HTML字符串
+     */
+    renderDocumentAnalysisSection(documentAnalysis) {
+        if (!documentAnalysis) {
+            return '';
+        }
+
+        const competitorStores = documentAnalysis.competitorStores || [];
+        const competitorSummary = documentAnalysis.competitorSummary || {};
+
+        return `
+            <div class="market-report-section market-document-analysis-section">
+                <h2 class="market-section-title">
+                    <i class="market-icon">📄</i>
+                    竞争对手分析
+                </h2>
+                <div class="market-document-analysis-content">
+                    ${competitorStores.length > 0 ? `
+                        <div class="market-competitor-stores">
+                            <h3 class="market-subsection-title">竞争对手店铺信息</h3>
+                            ${competitorStores.map(store => `
+                                <div class="market-competitor-store">
+                                    <h4 class="market-store-name">${store.storeName}</h4>
+                                    <div class="market-store-details">
+                                        <div class="market-store-products">
+                                            <strong>产品：</strong>${(store.products || []).join('、')}
+                                        </div>
+                                        <div class="market-store-price">
+                                            <strong>价格区间：</strong>${store.priceRange || '未知'}
+                                        </div>
+                                        <div class="market-store-features">
+                                            <strong>特色：</strong>${(store.features || []).join('、')}
+                                        </div>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    ` : ''}
+
+                    ${Object.keys(competitorSummary).length > 0 ? `
+                        <div class="market-competitor-summary">
+                            <h3 class="market-subsection-title">竞争对手总结</h3>
+                            <div class="market-summary-content">
+                                ${competitorSummary.productTypes ? `
+                                    <div class="market-summary-item">
+                                        <strong>主要产品类型：</strong>${competitorSummary.productTypes.join('、')}
+                                    </div>
+                                ` : ''}
+                                ${competitorSummary.pricingStrategy ? `
+                                    <div class="market-summary-item">
+                                        <strong>定价策略：</strong>${competitorSummary.pricingStrategy}
+                                    </div>
+                                ` : ''}
+                                ${competitorSummary.commonFeatures ? `
+                                    <div class="market-summary-item">
+                                        <strong>共同特点：</strong>${competitorSummary.commonFeatures.join('、')}
+                                    </div>
+                                ` : ''}
+                            </div>
+                        </div>
+                    ` : ''}
+                </div>
+            </div>
+        `;
+    }
+
+    /**
+     * 渲染优化建议部分
+     * @param {Object} recommendations - 建议数据
+     * @returns {string} - HTML字符串
+     */
+    renderRecommendationsSection(recommendations) {
+        if (!recommendations) {
+            return '';
+        }
+
+        const sections = [
+            { key: 'products', icon: '🍽️', title: '产品策略建议' },
+            { key: 'pricing', icon: '💰', title: '定价策略建议' },
+            { key: 'marketing', icon: '📢', title: '营销策略建议' }
+        ];
+
+        return `
+            <div class="market-report-section market-recommendations-section">
+                <h2 class="market-section-title">
+                    <i class="market-icon">💡</i>
+                    优化建议
+                </h2>
+                <div class="market-recommendations-content">
+                    ${sections.map(section => {
+                        const data = recommendations[section.key] || {};
+                        const suggestions = data.suggestions || [];
+
+                        if (suggestions.length === 0) {
+                            return '';
+                        }
+
+                        return `
+                            <div class="market-recommendation-category">
+                                <h3 class="market-recommendation-title">
+                                    <i class="market-icon">${section.icon}</i>
+                                    ${data.title || section.title}
+                                </h3>
+                                <ul class="market-recommendation-list">
+                                    ${suggestions.map(suggestion => `
+                                        <li class="market-recommendation-item">${suggestion}</li>
+                                    `).join('')}
+                                </ul>
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+            </div>
+        `;
+    }
+
     /**
      * 设置动画延迟
      */
