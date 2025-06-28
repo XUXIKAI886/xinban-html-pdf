@@ -89,21 +89,7 @@ class BrandAnalysisApp {
             });
         }
         
-        // 自定义品类选择事件
-        const categorySelect = document.getElementById('category');
-        const customCategory = document.getElementById('customCategory');
-        if (categorySelect && customCategory) {
-            categorySelect.addEventListener('change', (e) => {
-                if (e.target.value === 'custom') {
-                    customCategory.style.display = 'block';
-                    customCategory.required = true;
-                } else {
-                    customCategory.style.display = 'none';
-                    customCategory.required = false;
-                    customCategory.value = '';
-                }
-            });
-        }
+
         
         // 键盘快捷键
         document.addEventListener('keydown', (e) => {
@@ -273,7 +259,7 @@ class BrandAnalysisApp {
             console.log('PDF导出方法:', this.pdfExportMethod);
             console.log('报告内容长度:', reportContent.innerHTML.length);
 
-            const fileName = `${this.storeData?.storeName || '品牌定位分析'}_${new Date().toISOString().split('T')[0]}.pdf`;
+            const fileName = `${this.storeData?.storeName || '店铺'}品牌定位设计.pdf`;
 
             // 优先使用html-to-image方案
             if (this.pdfExportMethod === 'html-to-image') {
@@ -294,7 +280,7 @@ class BrandAnalysisApp {
                 console.log('尝试备用方案...');
                 try {
                     const reportContent = document.getElementById('report-content');
-                    const fileName = `${this.storeData?.storeName || '品牌定位分析'}_${new Date().toISOString().split('T')[0]}.pdf`;
+                    const fileName = `${this.storeData?.storeName || '店铺'}品牌定位设计.pdf`;
                     await this.directHTMLToJPGToPDF(reportContent, fileName);
                     this.showSuccess('PDF导出成功！（使用备用方案）');
                     return;

@@ -31,12 +31,9 @@ class FormHandler {
             },
             category: {
                 required: true,
-                message: '请选择经营品类'
-            },
-            customCategory: {
-                required: false,
+                minLength: 2,
                 maxLength: 100,
-                message: '自定义品类长度不能超过100个字符'
+                message: '请输入经营品类，长度在2-100个字符之间'
             },
             address: {
                 required: false,
@@ -69,35 +66,16 @@ class FormHandler {
             }
         });
         
-        // 自定义品类处理
-        const categorySelect = document.getElementById('category');
-        if (categorySelect) {
-            categorySelect.addEventListener('change', () => {
-                this.handleCategoryChange();
+        // 品类输入框处理
+        const categoryInput = document.getElementById('category');
+        if (categoryInput) {
+            categoryInput.addEventListener('input', () => {
                 this.validateField('category');
             });
         }
     }
     
-    /**
-     * 处理品类选择变化
-     */
-    handleCategoryChange() {
-        const categorySelect = document.getElementById('category');
-        const customCategory = document.getElementById('customCategory');
-        
-        if (categorySelect.value === 'custom') {
-            customCategory.style.display = 'block';
-            customCategory.required = true;
-            this.validationRules.customCategory.required = true;
-        } else {
-            customCategory.style.display = 'none';
-            customCategory.required = false;
-            customCategory.value = '';
-            this.validationRules.customCategory.required = false;
-            this.clearFieldError('customCategory');
-        }
-    }
+
     
     /**
      * 验证单个字段
@@ -221,15 +199,7 @@ class FormHandler {
             }
         });
         
-        // 特殊验证：如果选择了自定义品类，必须填写自定义品类
-        const categorySelect = document.getElementById('category');
-        const customCategory = document.getElementById('customCategory');
-        
-        if (categorySelect.value === 'custom' && !customCategory.value.trim()) {
-            this.showFieldError('customCategory', '请填写自定义品类');
-            isValid = false;
-            errors.push('customCategory');
-        }
+
         
         // 滚动到第一个错误字段
         if (!isValid && errors.length > 0) {
@@ -260,12 +230,7 @@ class FormHandler {
         data.features = formData.get('features')?.trim() || '';
         
         // 处理品类
-        const category = formData.get('category');
-        if (category === 'custom') {
-            data.category = formData.get('customCategory')?.trim() || '';
-        } else {
-            data.category = category || '';
-        }
+        data.category = formData.get('category')?.trim() || '';
         
         // 处理目标客群（多选）
         const targetGroups = formData.getAll('targetGroup');
@@ -292,12 +257,7 @@ class FormHandler {
             this.clearFieldError(fieldName);
         });
         
-        // 重置自定义品类
-        const customCategory = document.getElementById('customCategory');
-        if (customCategory) {
-            customCategory.style.display = 'none';
-            customCategory.required = false;
-        }
+
         
         // 重置价格显示
         const priceValue = document.getElementById('priceValue');

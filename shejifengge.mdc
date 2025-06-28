@@ -1,0 +1,322 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+/* 
+ * UI设计规范
+ * 版本: 1.0
+ * 日期: 2025
+ */
+
+/* ===== 颜色系统 ===== */
+// 主色系
+$primary-color: #FF5722; // 深橙色，代表速度和活力
+$secondary-color: #4CAF50; // 绿色，代表健康
+$accent-color: #2196F3; // 蓝色，代表清爽
+
+// 背景色系
+$light-bg: #F5F5F5; // 浅灰色背景
+$card-bg: #FFFFFF; // 卡片背景色
+$highlight-bg: rgba(255, 87, 34, 0.1); // 高亮背景
+
+// 文本色系
+$text-color: #333333; // 主文本色
+$border-color: #E8E8E8; // 边框色
+
+/* ===== 排版规则 ===== */
+// 字体家族
+$font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+
+// 字体大小
+$font-size-base: 16px;
+$font-size-lg: 1.5rem;
+$font-size-md: 1.1rem;
+$font-size-sm: 0.9rem;
+
+// 行高
+$line-height-base: 1.6;
+
+/* ===== 全局样式 ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: $font-family;
+}
+
+body {
+  background-color: $light-bg;
+  color: $text-color;
+  line-height: $line-height-base;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ===== 页头样式 ===== */
+header {
+  padding: 40px 0;
+  text-align: center;
+  background: linear-gradient(135deg, $primary-color, $accent-color);
+  color: white;
+  margin-bottom: 25px;
+  border-radius: 0 0 10px 10px;
+  position: relative;
+  overflow: hidden;
+  
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    z-index: 0;
+  }
+  
+  h1, .subtitle {
+    position: relative;
+    z-index: 1;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+  }
+}
+
+/* ===== 卡片组件 ===== */
+.card {
+  background-color: $card-bg;
+  border-radius: 10px;
+  padding: 25px;
+  margin-bottom: 25px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  &::after {
+    content: "";
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FF5722' width='24px' height='24px'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm4.24 16L12 15.45 7.77 18l1.12-4.81-3.73-3.23 4.92-.42L12 5l1.92 4.53 4.92.42-3.73 3.23L16.23 18z'/%3E%3C/svg%3E");
+    opacity: 0.2;
+  }
+}
+
+/* ===== 标题样式 ===== */
+h2 {
+  color: $primary-color;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid $border-color;
+  position: relative;
+  
+  &::before {
+    content: "■";
+    color: $primary-color;
+    margin-right: 8px;
+    font-size: 0.8em;
+  }
+}
+
+h3 {
+  color: $secondary-color;
+  font-size: 1.1rem;
+  margin: 15px 0 10px;
+}
+
+/* ===== 列表样式 ===== */
+ul {
+  padding-left: 20px;
+  margin-bottom: 15px;
+}
+
+li {
+  margin-bottom: 10px;
+  position: relative;
+  
+  &::before {
+    content: "•";
+    color: $primary-color;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+  }
+}
+
+/* ===== 特殊组件 ===== */
+.highlight {
+  background-color: $highlight-bg;
+  padding: 2px 5px;
+  border-radius: 3px;
+  font-weight: bold;
+  color: $primary-color;
+}
+
+.recommendation {
+  background-color: rgba(76, 175, 80, 0.1);
+  padding: 15px;
+  border-radius: 5px;
+  margin-top: 15px;
+  border-left: 4px solid $secondary-color;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
+  margin: 15px 0;
+}
+
+.menu-item {
+  background-color: white;
+  border-radius: 5px;
+  padding: 15px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+  
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.dish-name {
+  font-weight: bold;
+  color: $primary-color;
+  margin-bottom: 5px;
+}
+
+.dish-price {
+  color: $accent-color;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.dish-desc {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.price-tier {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding: 5px 0;
+  border-bottom: 1px dashed $border-color;
+}
+
+.tier-name {
+  font-weight: bold;
+}
+
+.tier-price {
+  color: $primary-color;
+  font-weight: bold;
+}
+
+/* ===== SWOT分析组件 ===== */
+.swot-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin: 15px 0;
+}
+
+.swot-item {
+  padding: 15px;
+  border-radius: 5px;
+  
+  h4 {
+    margin-bottom: 10px;
+    font-size: 1rem;
+  }
+}
+
+.strengths {
+  background-color: rgba(76, 175, 80, 0.1);
+  border-left: 3px solid #4CAF50;
+}
+
+.weaknesses {
+  background-color: rgba(244, 67, 54, 0.1);
+  border-left: 3px solid #F44336;
+}
+
+.opportunities {
+  background-color: rgba(33, 150, 243, 0.1);
+  border-left: 3px solid #2196F3;
+}
+
+.threats {
+  background-color: rgba(255, 152, 0, 0.1);
+  border-left: 3px solid #FF9800;
+}
+
+/* ===== 表格样式 ===== */
+.price-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 15px 0;
+  
+  th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid $border-color;
+  }
+  
+  th {
+    background-color: $light-bg;
+    font-weight: bold;
+  }
+  
+  tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.02);
+  }
+}
+
+/* ===== 页脚样式 ===== */
+footer {
+  text-align: center;
+  padding: 20px 0;
+  color: #666;
+  font-size: 0.9rem;
+  margin-top: 30px;
+}
+
+/* ===== 响应式设计 ===== */
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 2rem;
+  }
+  
+  .swot-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .card {
+    padding: 20px;
+  }
+
+}

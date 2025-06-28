@@ -39,22 +39,11 @@
                                 
                                 <div class="form-group">
                                     <label for="category">经营品类 <span class="required">*</span></label>
-                                    <select id="category" name="category" required>
-                                        <option value="">请选择经营品类</option>
-                                        <option value="美食 > 快餐简餐 > 轻食/沙拉/健康餐">轻食/沙拉/健康餐</option>
-                                        <option value="美食 > 快餐简餐 > 盖饭/丼饭">盖饭/丼饭</option>
-                                        <option value="美食 > 快餐简餐 > 炒饭/焖饭">炒饭/焖饭</option>
-                                        <option value="美食 > 中餐 > 川菜">川菜</option>
-                                        <option value="美食 > 中餐 > 湘菜">湘菜</option>
-                                        <option value="美食 > 中餐 > 粤菜">粤菜</option>
-                                        <option value="美食 > 小吃夜宵 > 烧烤">烧烤</option>
-                                        <option value="美食 > 小吃夜宵 > 麻辣烫">麻辣烫</option>
-                                        <option value="美食 > 饮品 > 奶茶果汁">奶茶果汁</option>
-                                        <option value="美食 > 饮品 > 咖啡">咖啡</option>
-                                        <option value="custom">其他（自定义）</option>
-                                    </select>
-                                    <input type="text" id="customCategory" name="customCategory" 
-                                           placeholder="请输入自定义品类" style="display: none;" maxlength="100">
+                                    <input type="text" id="category" name="category" required
+                                           placeholder="请输入经营品类，如：川菜、奶茶、烧烤、轻食等" maxlength="100">
+                                    <div class="form-hint">
+                                        <small>常见品类：川菜、湘菜、粤菜、烧烤、麻辣烫、奶茶、咖啡、轻食、盖饭、炒饭等</small>
+                                    </div>
                                     <div class="error-message" id="category-error"></div>
                                 </div>
                             </div>

@@ -1102,10 +1102,7 @@ class PDFExporter {
      * @returns {string} - 生成的文件名
      */
     generateFileName() {
-        const now = new Date();
-        const dateStr = now.toISOString().split('T')[0];
-        const timeStr = now.toTimeString().split(' ')[0].replace(/:/g, '-');
-        return `品牌定位分析报告_${dateStr}_${timeStr}.pdf`;
+        return `品牌定位设计.pdf`;
     }
     
     /**

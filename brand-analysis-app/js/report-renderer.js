@@ -57,7 +57,7 @@ class ReportRenderer {
         const titleHTML = `
             <div class="report-title-section">
                 <h1 class="report-title">${storeData.storeName} 品牌定位分析报告</h1>
-                <p class="report-subtitle">基于AI智能分析生成</p>
+                <p class="report-subtitle">呈尚策划运营部专业分析</p>
                 <p class="report-date">生成时间：${new Date().toLocaleString('zh-CN')}</p>
             </div>
         `;
@@ -189,31 +189,12 @@ class ReportRenderer {
     }
     
     /**
-     * 渲染元数据信息
+     * 渲染元数据信息（已禁用）
      * @param {Object} metadata - 元数据
      */
     renderMetadata(metadata) {
-        const metadataHTML = `
-            <div class="report-metadata">
-                <h3>报告信息</h3>
-                <div class="metadata-grid">
-                    <div class="metadata-item">
-                        <span class="metadata-label">生成模型：</span>
-                        <span class="metadata-value">${metadata.apiModel || 'DeepSeek Chat'}</span>
-                    </div>
-                    <div class="metadata-item">
-                        <span class="metadata-label">内容长度：</span>
-                        <span class="metadata-value">${metadata.contentLength || 0} 字符</span>
-                    </div>
-                    <div class="metadata-item">
-                        <span class="metadata-label">生成时间：</span>
-                        <span class="metadata-value">${new Date(metadata.generationTime).toLocaleString('zh-CN')}</span>
-                    </div>
-                </div>
-            </div>
-        `;
-        
-        this.reportContainer.insertAdjacentHTML('beforeend', metadataHTML);
+        // 不再渲染底部的报告信息
+        // 保留方法以避免调用错误，但不执行任何操作
     }
     
     /**

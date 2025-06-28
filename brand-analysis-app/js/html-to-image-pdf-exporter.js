@@ -13,7 +13,7 @@ class HtmlToImagePDFExporter {
             cacheBust: true,
             quality: 0.95,
             // PDF 配置
-            filename: 'brand-analysis-report.pdf',
+            filename: '品牌定位设计.pdf',
             margin: 15, // mm - 增加边距，防止内容过大
             format: 'a4',
             orientation: 'portrait',
@@ -604,6 +604,63 @@ class HtmlToImagePDFExporter {
     }
 
     /**
+     * 精确计算元素内容高度，排除多余空白
+     */
+    calculateActualContentHeight(element) {
+        // 获取元素的所有子元素
+        const children = Array.from(element.children);
+        if (children.length === 0) {
+            return element.scrollHeight;
+        }
+
+        // 找到最后一个有内容的子元素
+        let lastContentElement = null;
+        let maxBottom = 0;
+
+        // 遍历所有子元素，找到最底部的有内容元素
+        children.forEach(child => {
+            const rect = child.getBoundingClientRect();
+            const computedStyle = window.getComputedStyle(child);
+
+            // 检查元素是否有实际内容（不是空的或隐藏的）
+            if (rect.height > 0 &&
+                computedStyle.display !== 'none' &&
+                computedStyle.visibility !== 'hidden' &&
+                (child.textContent.trim() || child.querySelector('img, canvas, svg'))) {
+
+                const elementBottom = rect.bottom + parseFloat(computedStyle.marginBottom || 0);
+                if (elementBottom > maxBottom) {
+                    maxBottom = elementBottom;
+                    lastContentElement = child;
+                }
+            }
+        });
+
+        if (lastContentElement) {
+            const elementRect = element.getBoundingClientRect();
+            const elementStyle = window.getComputedStyle(element);
+            const paddingTop = parseFloat(elementStyle.paddingTop || 0);
+
+            // 计算从容器内容区域顶部到最后内容元素底部的距离
+            const contentHeight = maxBottom - elementRect.top - paddingTop + paddingTop;
+
+            // 添加容器的padding-bottom，但限制最大值
+            const paddingBottom = parseFloat(elementStyle.paddingBottom || 0);
+            const finalHeight = contentHeight + Math.min(paddingBottom, 20); // 限制底部padding最大20px
+
+            console.log('📏 内容高度计算:');
+            console.log('- 容器scrollHeight:', element.scrollHeight);
+            console.log('- 实际内容高度:', Math.ceil(finalHeight));
+            console.log('- 最后内容元素:', lastContentElement.tagName, lastContentElement.className);
+            console.log('- 节省空白:', element.scrollHeight - Math.ceil(finalHeight), 'px');
+
+            return Math.ceil(finalHeight);
+        }
+
+        return element.scrollHeight;
+    }
+
+    /**
      * 可变高度单页PDF导出 - 页面高度自适应内容，不缩放不分页不裁剪
      * @param {string|HTMLElement} element - 要导出的元素
      * @param {string} filename - 文件名
@@ -620,12 +677,12 @@ class HtmlToImagePDFExporter {
             margin: customOptions.margin || 10,
             pixelRatio: customOptions.pixelRatio || 2.5,
             // 移除缩放相关配置，因为我们不需要缩放
-            filename: filename || customOptions.filename || 'variable-height-report.pdf'
+            filename: filename || customOptions.filename || '品牌定位设计.pdf'
         };
 
-        console.log('🎯 可变高度单页PDF导出模式 - 页面高度自适应内容 (v20250628-3)');
+        console.log('🎯 可变高度单页PDF导出模式 - 页面高度自适应内容 (v20250628-4)');
         console.log('📋 配置:', singlePageOptions);
-        console.log('🔧 创建可变高度PDF，不缩放不分页不裁剪');
+        console.log('🔧 创建可变高度PDF，不缩放不分页不裁剪，精确计算内容高度');
 
         try {
             // 获取目标元素
@@ -634,10 +691,23 @@ class HtmlToImagePDFExporter {
                 throw new Error('目标元素未找到');
             }
 
-            console.log('📸 开始生成单页图像...');
+            // 精确计算内容高度
+            const actualContentHeight = this.calculateActualContentHeight(targetElement);
+
+            // 临时设置元素高度为实际内容高度，避免多余空白
+            const originalHeight = targetElement.style.height;
+            const originalOverflow = targetElement.style.overflow;
+            targetElement.style.height = actualContentHeight + 'px';
+            targetElement.style.overflow = 'hidden';
+
+            console.log('📸 开始生成单页图像（精确高度）...');
 
             // 生成图像
             const imageDataUrl = await this.generateImage(targetElement, singlePageOptions);
+
+            // 恢复原始样式
+            targetElement.style.height = originalHeight;
+            targetElement.style.overflow = originalOverflow;
 
             console.log('📄 创建可变高度PDF...');
 

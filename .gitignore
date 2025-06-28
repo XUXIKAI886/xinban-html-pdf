@@ -83,3 +83,6 @@ secrets.js
 # 其他
 .sass-cache/
 .parcel-cache/
+
+# YoYo AI version control directory
+.yoyo/
