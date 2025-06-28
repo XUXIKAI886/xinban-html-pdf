@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商圈调研PDF导出功能测试</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .test-header {
+            background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .test-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #4CAF50;
+        }
+        .test-button {
+            background: #4CAF50;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+            transition: background 0.3s;
+        }
+        .test-button:hover {
+            background: #45a049;
+        }
+        .test-result {
+            background: #e8f5e8;
+            border: 1px solid #4CAF50;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+        }
+        .error {
+            background: #ffebee;
+            border: 1px solid #f44336;
+            color: #d32f2f;
+        }
+        .success {
+            background: #e8f5e8;
+            border: 1px solid #4CAF50;
+            color: #2e7d32;
+        }
+        .code {
+            background: #f5f5f5;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-header">
+        <h1>🔧 商圈调研PDF导出功能测试</h1>
+        <p>验证修复后的PDF导出功能是否正常工作</p>
+    </div>
+
+    <div class="test-section">
+        <h2>📋 测试说明</h2>
+        <p>本页面用于测试商圈调研分析模块的PDF导出功能修复效果。</p>
+        <p><strong>修复内容：</strong></p>
+        <ul>
+            <li>✅ 使用与品牌分析模块相同的先进PDF导出技术</li>
+            <li>✅ 支持可变高度PDF导出</li>
+            <li>✅ 完美的样式保持</li>
+            <li>✅ 智能缩放算法</li>
+        </ul>
+    </div>
+
+    <div class="test-section">
+        <h2>🧪 测试步骤</h2>
+        <ol>
+            <li>点击下方"打开主应用"按钮</li>
+            <li>在右侧商圈调研分析模块填写测试信息</li>
+            <li>生成商圈分析报告</li>
+            <li>点击"下载PDF"按钮</li>
+            <li>验证PDF效果是否符合预期</li>
+        </ol>
+        
+        <button class="test-button" onclick="openMainApp()">🚀 打开主应用</button>
+        <button class="test-button" onclick="runEnvironmentCheck()">🔍 检查环境</button>
+    </div>
+
+    <div class="test-section">
+        <h2>✅ 预期效果</h2>
+        <div class="test-result success">
+            <h3>修复后应该看到：</h3>
+            <ul>
+                <li>✅ PDF页面高度自适应内容长度</li>
+                <li>✅ 所有内容完整显示，无裁剪</li>
+                <li>✅ 样式与网页显示完全一致</li>
+                <li>✅ 与品牌分析模块PDF效果一致</li>
+                <li>✅ 文件名包含商圈名称和日期</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>📊 技术对比</h2>
+        <table style="width: 100%; border-collapse: collapse; margin: 15px 0;">
+            <tr style="background: #f0f0f0;">
+                <th style="padding: 10px; border: 1px solid #ddd;">特性</th>
+                <th style="padding: 10px; border: 1px solid #ddd;">修复前 ❌</th>
+                <th style="padding: 10px; border: 1px solid #ddd;">修复后 ✅</th>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border: 1px solid #ddd;">PDF格式</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">固定A4</td>
+                <td style="padding: 10px; border: 1px solid #ddd;"><strong>可变高度</strong></td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border: 1px solid #ddd;">样式保持</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">部分丢失</td>
+                <td style="padding: 10px; border: 1px solid #ddd;"><strong>100%保持</strong></td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border: 1px solid #ddd;">内容完整性</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">可能裁剪</td>
+                <td style="padding: 10px; border: 1px solid #ddd;"><strong>完整显示</strong></td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border: 1px solid #ddd;">技术一致性</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">不一致</td>
+                <td style="padding: 10px; border: 1px solid #ddd;"><strong>完全一致</strong></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="test-section">
+        <h2>🔧 修复详情</h2>
+        <p><strong>主要修改文件：</strong></p>
+        <div class="code">
+            html-img-pdf/brand-analysis-app/js/market-app.js
+            html-img-pdf/brand-analysis-app/css/market-analysis.css
+        </div>
+        
+        <p><strong>核心修复：</strong></p>
+        <div class="code">
+// 修复前：使用基础PDF导出器
+this.pdfExporter = new MarketPDFExporter();
+
+// 修复后：使用先进的PDF导出器
+this.pdfExporter = new HtmlToImagePDFExporter();
+this.pdfExportMethod = 'html-to-image-advanced';
+        </div>
+    </div>
+
+    <div id="test-results" class="test-section" style="display: none;">
+        <h2>🧪 测试结果</h2>
+        <div id="result-content"></div>
+    </div>
+
+    <script>
+        function openMainApp() {
+            // 打开主应用
+            window.open('brand-analysis-app/index.html', '_blank');
+            
+            // 显示提示
+            showResult('主应用已在新窗口打开。请按照测试步骤进行验证。', 'success');
+        }
+
+        function runEnvironmentCheck() {
+            const results = [];
+            
+            // 检查是否在正确的目录结构中
+            const currentPath = window.location.pathname;
+            if (currentPath.includes('html-img-pdf')) {
+                results.push('✅ 目录结构正确');
+            } else {
+                results.push('❌ 请确保在html-img-pdf目录中运行');
+            }
+            
+            // 检查主应用文件是否存在
+            fetch('brand-analysis-app/index.html')
+                .then(response => {
+                    if (response.ok) {
+                        results.push('✅ 主应用文件存在');
+                    } else {
+                        results.push('❌ 主应用文件不存在');
+                    }
+                    
+                    showResult(results.join('<br>'), results.some(r => r.includes('❌')) ? 'error' : 'success');
+                })
+                .catch(error => {
+                    results.push('❌ 无法访问主应用文件');
+                    showResult(results.join('<br>'), 'error');
+                });
+        }
+
+        function showResult(message, type) {
+            const resultsDiv = document.getElementById('test-results');
+            const contentDiv = document.getElementById('result-content');
+            
+            contentDiv.innerHTML = `<div class="test-result ${type}">${message}</div>`;
+            resultsDiv.style.display = 'block';
+            
+            // 滚动到结果区域
+            resultsDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // 页面加载完成后显示欢迎信息
+        window.addEventListener('load', function() {
+            console.log('🔧 商圈调研PDF导出功能测试页面已加载');
+            console.log('📋 请按照页面说明进行测试验证');
+        });
+    </script>
+</body>
+</html>

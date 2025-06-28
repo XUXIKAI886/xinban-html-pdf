@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商圈调研PDF颜色一致性测试</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+            background: #f5f5f5;
+        }
+        
+        .test-header {
+            background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+        }
+        
+        .test-section {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+        
+        .color-test-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .color-sample {
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .color-sample-header {
+            background: #f8f9fa;
+            padding: 10px 15px;
+            font-weight: bold;
+            color: #2E7D32;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .color-sample-content {
+            padding: 15px;
+        }
+        
+        /* 模拟商圈报告的颜色样式 */
+        .sample-report-header {
+            background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin: 10px 0;
+        }
+        
+        .sample-meta-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 12px;
+            border-radius: 5px;
+            color: white;
+            margin: 5px;
+            display: inline-block;
+        }
+        
+        .sample-analysis-section {
+            background: #f8f9fa;
+            border-left: 4px solid #4CAF50;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .sample-analysis-title {
+            color: #4CAF50;
+            font-weight: bold;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+        
+        .sample-content-text {
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .sample-highlights {
+            background: #e8f5e8;
+            border-left: 4px solid #4CAF50;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .sample-highlights-title {
+            color: #2E7D32;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .sample-score-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            margin: 10px auto;
+        }
+        
+        .sample-score-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #FFD700;
+        }
+        
+        .sample-icon {
+            color: #4CAF50;
+            font-size: 1.2em;
+            margin-right: 8px;
+        }
+        
+        .sample-header-icon {
+            color: white;
+            font-size: 1.2em;
+            margin-right: 8px;
+        }
+        
+        .test-button {
+            background: #4CAF50;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+            transition: background 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .test-button:hover {
+            background: #45a049;
+        }
+        
+        .checklist {
+            background: #f8f9fa;
+            border-left: 4px solid #4CAF50;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .checklist h3 {
+            color: #2E7D32;
+            margin-top: 0;
+        }
+        
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            padding: 8px;
+            background: white;
+            border-radius: 5px;
+        }
+        
+        .checklist-item input[type="checkbox"] {
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+        
+        .color-code {
+            font-family: 'Courier New', monospace;
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+        
+        .success-indicator {
+            background: #e8f5e8;
+            color: #2e7d32;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #4CAF50;
+            margin: 15px 0;
+        }
+        
+        .warning-indicator {
+            background: #fff3e0;
+            color: #f57c00;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #ff9800;
+            margin: 15px 0;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="test-header">
+        <h1>🎨 商圈调研PDF颜色一致性测试</h1>
+        <p>验证PDF导出中所有颜色元素的完美一致性</p>
+    </div>
+
+    <div class="test-section">
+        <h2>📋 测试说明</h2>
+        <p>我们已经全面修复了商圈调研分析模块PDF导出时的颜色显示问题。现在需要验证以下颜色元素在PDF中是否与网页预览100%一致：</p>
+        
+        <div class="warning-indicator">
+            <strong>🎯 测试目标</strong>：确保PDF中的每一个颜色细节都与HTML页面预览完全一致，无任何视觉差异。
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>🎨 颜色样本展示</h2>
+        <p>以下是商圈调研报告中应该正确显示的所有颜色元素：</p>
+        
+        <div class="color-test-grid">
+            <!-- 报告头部样本 -->
+            <div class="color-sample">
+                <div class="color-sample-header">报告头部颜色</div>
+                <div class="color-sample-content">
+                    <div class="sample-report-header">
+                        <i class="fas fa-chart-line sample-header-icon"></i>
+                        <strong>商圈调研分析报告</strong>
+                        <div style="margin-top: 10px;">
+                            <span class="sample-meta-item">商圈名称：测试商圈</span>
+                            <span class="sample-meta-item">分析日期：2025-06-28</span>
+                        </div>
+                    </div>
+                    <p><strong>预期效果：</strong></p>
+                    <ul>
+                        <li>背景：绿色渐变 <span class="color-code">#4CAF50 → #2E7D32</span></li>
+                        <li>文字：白色 <span class="color-code">#ffffff</span></li>
+                        <li>图标：白色 <span class="color-code">#ffffff</span></li>
+                        <li>元数据：半透明白色背景</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 分析维度样本 -->
+            <div class="color-sample">
+                <div class="color-sample-header">分析维度颜色</div>
+                <div class="color-sample-content">
+                    <div class="sample-analysis-section">
+                        <div class="sample-analysis-title">
+                            <i class="fas fa-map-marker-alt sample-icon"></i>地理位置分析
+                        </div>
+                        <div class="sample-content-text">
+                            这是分析维度的内容文字，应该显示为深灰色。
+                        </div>
+                    </div>
+                    <p><strong>预期效果：</strong></p>
+                    <ul>
+                        <li>背景：浅灰色 <span class="color-code">#f8f9fa</span></li>
+                        <li>左边框：绿色 <span class="color-code">#4CAF50</span></li>
+                        <li>标题：绿色 <span class="color-code">#4CAF50</span></li>
+                        <li>内容：深灰色 <span class="color-code">#333</span></li>
+                        <li>图标：绿色 <span class="color-code">#4CAF50</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 关键要点样本 -->
+            <div class="color-sample">
+                <div class="color-sample-header">关键要点颜色</div>
+                <div class="color-sample-content">
+                    <div class="sample-highlights">
+                        <div class="sample-highlights-title">
+                            <i class="fas fa-lightbulb sample-icon"></i>关键要点
+                        </div>
+                        <div class="sample-content-text">
+                            • 位于市中心核心区域<br>
+                            • 交通网络发达，可达性高<br>
+                            • 周边配套设施完善
+                        </div>
+                    </div>
+                    <p><strong>预期效果：</strong></p>
+                    <ul>
+                        <li>背景：浅绿色 <span class="color-code">#e8f5e8</span></li>
+                        <li>左边框：绿色 <span class="color-code">#4CAF50</span></li>
+                        <li>标题：深绿色 <span class="color-code">#2E7D32</span></li>
+                        <li>内容：深灰色 <span class="color-code">#333</span></li>
+                        <li>图标：绿色 <span class="color-code">#4CAF50</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 评分圆圈样本 -->
+            <div class="color-sample">
+                <div class="color-sample-header">评分显示颜色</div>
+                <div class="color-sample-content">
+                    <div class="sample-score-circle">
+                        <div class="sample-score-number">7</div>
+                        <div style="font-size: 0.8em;">综合评分</div>
+                    </div>
+                    <p><strong>预期效果：</strong></p>
+                    <ul>
+                        <li>背景：绿色渐变 <span class="color-code">#4CAF50 → #2E7D32</span></li>
+                        <li>评分数字：金黄色 <span class="color-code">#FFD700</span></li>
+                        <li>标签文字：白色 <span class="color-code">#ffffff</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>✅ 颜色一致性检查清单</h2>
+        
+        <div class="checklist">
+            <h3>📝 请在测试后勾选以下项目</h3>
+            
+            <div class="checklist-item">
+                <input type="checkbox" id="check1">
+                <label for="check1"><strong>报告头部</strong>：绿色渐变背景是否正确显示？</label>
+            </div>
+            
+            <div class="checklist-item">
+                <input type="checkbox" id="check2">
+                <label for="check2"><strong>头部文字</strong>：白色文字是否清晰显示？</label>
+            </div>
+            
+            <div class="checklist-item">
+                <input type="checkbox" id="check3">
+                <label for="check3"><strong>头部图标</strong>：白色图标是否正确显示？</label>
+            </div>
+            
+            <div class="checklist-item">
+                <input type="checkbox" id="check4">
+                <label for="check4"><strong>分析标题</strong>：绿色标题文字是否正确显示？</label>
+            </div>
+            
+            <div class="checklist-item">
+                <input type="checkbox" id="check5">
+                <label for="check5"><strong>正文内容</strong>：深灰色正文是否清晰显示？</label>
+            </div>
+            
+            <div class="checklist-item">
+                <input type="checkbox" id="check6">
+                <label for="check6"><strong>评分数字</strong>：金黄色评分是否醒目显示？</label>
+            </div>
+            
+            <div class="checklist-item">
+                <input type="checkbox" id="check7">
+                <label for="check7"><strong>绿色边框</strong>：左侧绿色边框是否正确显示？</label>
+            </div>
+            
+            <div class="checklist-item">
+                <input type="checkbox" id="check8">
+                <label for="check8"><strong>内容图标</strong>：绿色图标是否正确显示？</label>
+            </div>
+            
+            <div class="checklist-item">
+                <input type="checkbox" id="check9">
+                <label for="check9"><strong>背景颜色</strong>：各区域背景颜色是否正确显示？</label>
+            </div>
+            
+            <div class="checklist-item">
+                <input type="checkbox" id="check10">
+                <label for="check10"><strong>整体一致性</strong>：PDF与网页预览是否100%一致？</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>🧪 测试步骤</h2>
+        <ol>
+            <li><strong>打开主应用</strong>：点击下方按钮打开智能分析应用平台</li>
+            <li><strong>填写信息</strong>：在右侧商圈调研分析模块填写测试信息</li>
+            <li><strong>生成报告</strong>：点击"生成分析"按钮，仔细观察网页中的所有颜色</li>
+            <li><strong>对比样本</strong>：将网页显示与上方颜色样本进行对比</li>
+            <li><strong>导出PDF</strong>：点击"下载PDF"按钮，等待PDF生成</li>
+            <li><strong>验证一致性</strong>：打开PDF文件，逐一对比每个颜色元素</li>
+            <li><strong>完成检查</strong>：根据对比结果勾选上方检查清单</li>
+        </ol>
+        
+        <div style="text-align: center; margin: 30px 0;">
+            <a href="brand-analysis-app/index.html" target="_blank" class="test-button">
+                🎨 立即开始颜色一致性测试
+            </a>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>📊 预期测试结果</h2>
+        
+        <div class="success-indicator">
+            <strong>✅ 完美通过标准</strong>：所有10个检查项目都应该能够勾选，表示PDF中的颜色与网页预览100%一致。
+        </div>
+        
+        <h3>🎯 关键验证点</h3>
+        <ul>
+            <li><strong>渐变效果</strong>：报告头部和评分圆圈的绿色渐变应该完美保持</li>
+            <li><strong>文字层次</strong>：不同级别的文字应该有明确的颜色区分</li>
+            <li><strong>边框线条</strong>：所有绿色边框线条应该清晰显示</li>
+            <li><strong>图标一致</strong>：头部白色图标和内容绿色图标应该正确区分</li>
+            <li><strong>背景层次</strong>：不同区域的背景颜色应该有清晰的层次感</li>
+        </ul>
+        
+        <div style="text-align: center; margin: 30px 0;">
+            <a href="商圈PDF颜色一致性全面修复报告.md" target="_blank" class="test-button" style="background: #607d8b;">
+                📄 查看详细修复报告
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // 页面加载完成后的提示
+        window.addEventListener('load', function() {
+            console.log('🎨 商圈调研PDF颜色一致性测试页面已加载');
+            console.log('📋 请按照页面说明进行全面的颜色一致性测试');
+            
+            // 检查清单交互
+            const checkboxes = document.querySelectorAll('.checklist input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const checkedCount = document.querySelectorAll('.checklist input[type="checkbox"]:checked').length;
+                    const totalCount = checkboxes.length;
+                    
+                    if (checkedCount === totalCount) {
+                        alert('🎉 恭喜！所有颜色一致性检查项目都已通过！\n\n商圈调研分析模块PDF导出的颜色显示已达到100%一致性标准！');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

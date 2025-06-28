@@ -1,0 +1,1032 @@
+/* 商圈调研分析模块样式文件 */
+/* 使用 market- 前缀避免与品牌定位分析模块样式冲突 */
+
+/* ===== 双模块布局样式 ===== */
+.dual-module-layout {
+    display: flex;
+    gap: 30px;
+    max-width: 1800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.module-container {
+    flex: 1;
+    min-width: 0; /* 防止flex子项溢出 */
+    position: relative; /* 为加载遮罩层提供定位基准 */
+}
+
+.brand-analysis-module {
+    border-right: 2px solid #e0e0e0;
+    padding-right: 30px;
+}
+
+.market-analysis-module {
+    padding-left: 30px;
+}
+
+/* 模块头部样式 */
+.module-header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(76, 175, 80, 0.2);
+}
+
+.module-title {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+    font-weight: 300;
+}
+
+.module-subtitle {
+    font-size: 1rem;
+    opacity: 0.9;
+    font-weight: 300;
+}
+
+/* ===== 商圈调研模块专用样式 ===== */
+
+/* 容器样式 */
+.market-container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0;
+}
+
+/* 区域样式 */
+.market-section {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    padding: 30px;
+    margin-bottom: 20px;
+}
+
+.market-section-title {
+    color: #2E7D32;
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 8px;
+}
+
+/* 表单样式 */
+.market-form {
+    width: 100%;
+}
+
+.market-form-section {
+    margin-bottom: 30px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #4CAF50;
+}
+
+.market-form-section-title {
+    color: #2E7D32;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.market-form-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.market-form-group {
+    flex: 1;
+    margin-bottom: 20px;
+}
+
+.market-form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #333;
+}
+
+.market-form-group input,
+.market-form-group textarea,
+.market-select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+    background: white;
+}
+
+.market-form-group input:focus,
+.market-form-group textarea:focus,
+.market-select:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+}
+
+.market-select {
+    cursor: pointer;
+}
+
+/* 复选框组样式 */
+.market-checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.market-checkbox-item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 8px 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.market-checkbox-item:hover {
+    border-color: #4CAF50;
+    background: rgba(76, 175, 80, 0.05);
+}
+
+.market-checkbox-item input[type="checkbox"] {
+    margin-right: 8px;
+    width: auto;
+}
+
+.market-checkbox-item input[type="checkbox"]:checked + span {
+    color: #2E7D32;
+    font-weight: 500;
+}
+
+/* 按钮样式 */
+.market-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    min-height: 48px;
+}
+
+.market-btn-primary {
+    background: #4CAF50;
+    color: white;
+}
+
+.market-btn-primary:hover {
+    background: #45a049;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+.market-btn-secondary {
+    background: #6c757d;
+    color: white;
+}
+
+.market-btn-secondary:hover {
+    background: #5a6268;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(108, 117, 125, 0.3);
+}
+
+.market-form-actions {
+    text-align: center;
+    margin-top: 30px;
+}
+
+/* 加载状态样式 - 商圈调研模块专用 */
+.market-loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    border-radius: 10px;
+}
+
+.market-loading-content {
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.market-loading-spinner-large {
+    width: 50px;
+    height: 50px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #4CAF50;
+    border-radius: 50%;
+    animation: market-spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+.market-loading-spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #4CAF50;
+    border-radius: 50%;
+    animation: market-spin 1s linear infinite;
+    margin-right: 8px;
+}
+
+@keyframes market-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.market-loading-text {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.market-loading-subtext {
+    font-size: 14px;
+    color: #666;
+}
+
+/* 报告样式 */
+.market-report-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.market-report-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.market-report-content {
+    background: white;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* 错误信息样式 */
+.error-message {
+    color: #d32f2f;
+    font-size: 12px;
+    margin-top: 5px;
+    display: none;
+}
+
+.error-message.show {
+    display: block;
+}
+
+/* 必填标识 */
+.required {
+    color: #d32f2f;
+}
+
+/* 表单描述文字 */
+.market-form-description {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+    line-height: 1.5;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 5px;
+    border-left: 3px solid #4CAF50;
+}
+
+/* 文件上传区域 */
+.market-file-upload-area {
+    border: 2px dashed #e0e0e0;
+    border-radius: 8px;
+    padding: 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    background: #fafafa;
+}
+
+.market-file-upload-area:hover {
+    border-color: #4CAF50;
+    background: #f8fff8;
+}
+
+.market-file-upload-area.dragover {
+    border-color: #4CAF50;
+    background: #e8f5e8;
+    transform: scale(1.02);
+}
+
+.market-upload-icon {
+    font-size: 3rem;
+    color: #4CAF50;
+    margin-bottom: 15px;
+}
+
+.market-upload-text {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.market-upload-hint {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+}
+
+/* 文件预览 */
+.market-file-preview {
+    margin-top: 15px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+}
+
+.market-file-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.market-file-icon {
+    font-size: 1.5rem;
+    color: #4CAF50;
+}
+
+.market-file-name {
+    flex: 1;
+    font-weight: 500;
+    color: #333;
+    text-align: left;
+}
+
+.market-file-size {
+    font-size: 14px;
+    color: #666;
+}
+
+.market-file-remove {
+    background: #f44336;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease;
+}
+
+.market-file-remove:hover {
+    background: #d32f2f;
+}
+
+.market-file-remove i {
+    font-size: 12px;
+}
+
+/* 响应式设计 */
+@media (max-width: 1200px) {
+    .dual-module-layout {
+        flex-direction: column;
+        gap: 40px;
+    }
+    
+    .brand-analysis-module {
+        border-right: none;
+        border-bottom: 2px solid #e0e0e0;
+        padding-right: 0;
+        padding-bottom: 30px;
+    }
+    
+    .market-analysis-module {
+        padding-left: 0;
+        padding-top: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .market-form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .market-checkbox-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .market-report-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .market-report-actions {
+        justify-content: center;
+    }
+
+    .module-title {
+        font-size: 1.5rem;
+    }
+
+    .module-subtitle {
+        font-size: 0.9rem;
+    }
+}
+
+/* ===== 商圈分析报告专用样式 ===== */
+
+/* 报告包装器 */
+.market-report-wrapper {
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* 报告头部区域 */
+.market-report-header-section {
+    background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
+    color: white;
+    padding: 30px;
+    text-align: center;
+}
+
+.market-report-title {
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+    font-weight: 300;
+}
+
+.market-report-meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.market-meta-item {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.market-meta-label {
+    display: block;
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-bottom: 5px;
+}
+
+.market-meta-value {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.market-overall-score {
+    font-size: 1.5rem !important;
+    font-weight: bold !important;
+    color: #FFD700;
+}
+
+/* 摘要区域 */
+.market-summary-section {
+    padding: 30px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.market-summary-content {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.market-summary-text {
+    flex: 1;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #333;
+}
+
+.market-score-display {
+    flex-shrink: 0;
+}
+
+.market-score-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+}
+
+.market-score-number {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.market-score-label {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* 分析区域 */
+.market-analysis-section {
+    padding: 25px 30px;
+    border-bottom: 1px solid #e0e0e0;
+    transition: all 0.3s ease;
+}
+
+.market-analysis-section:hover {
+    background: #f8f9fa;
+}
+
+.market-section-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.market-icon {
+    font-size: 1.5rem;
+    margin-right: 10px;
+}
+
+.market-dimension-score {
+    background: #4CAF50;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.market-analysis-content {
+    margin-left: 35px;
+}
+
+.market-analysis-text {
+    margin-bottom: 15px;
+    line-height: 1.6;
+    color: #333;
+}
+
+.market-analysis-text p {
+    margin-bottom: 10px;
+}
+
+/* 关键要点 */
+.market-highlights {
+    background: #e8f5e8;
+    border-left: 4px solid #4CAF50;
+    padding: 15px;
+    border-radius: 0 5px 5px 0;
+}
+
+.market-highlights-title {
+    color: #2E7D32;
+    font-size: 1rem;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.market-highlights-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.market-highlight-item {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 8px;
+    color: #333;
+    line-height: 1.4;
+}
+
+.market-highlight-item:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+/* 总结区域 */
+.market-conclusion-section {
+    padding: 30px;
+    background: #f0f8f0;
+    border-top: 3px solid #4CAF50;
+}
+
+.market-conclusion-content {
+    text-align: center;
+}
+
+.market-conclusion-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #333;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* 生成信息 */
+.market-generation-info {
+    padding: 20px 30px;
+    background: #f5f5f5;
+    border-top: 1px solid #e0e0e0;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.market-generation-details {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.market-generation-item {
+    display: flex;
+    align-items: center;
+}
+
+/* 错误报告样式 */
+.market-error-report {
+    text-align: center;
+    padding: 50px 30px;
+    color: #333;
+}
+
+.market-error-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+
+.market-error-title {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #d32f2f;
+}
+
+.market-error-message {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.market-error-details {
+    background: #f5f5f5;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 25px;
+    font-family: monospace;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* PDF导出优化 */
+.market-pdf-export {
+    background: white !important;
+    color: black !important;
+}
+
+.market-pdf-export * {
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+/* 响应式优化 */
+@media (max-width: 768px) {
+    .market-summary-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .market-score-circle {
+        width: 100px;
+        height: 100px;
+    }
+
+    .market-score-number {
+        font-size: 1.5rem;
+    }
+
+    .market-report-meta {
+        grid-template-columns: 1fr;
+    }
+
+    .market-generation-details {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .market-analysis-content {
+        margin-left: 0;
+    }
+
+    .market-section-title {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+}
+
+/* ===== PDF导出优化样式 ===== */
+/* 商圈调研分析模块PDF导出专用样式 */
+
+/* PDF导出时的容器优化 - 保持背景颜色 */
+#market-report-content.market-pdf-export {
+    background: #ffffff !important;
+    padding: 20px !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    max-width: none !important;
+    width: 100% !important;
+    overflow: visible !important;
+    /* 确保背景颜色在PDF中正确显示 */
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+}
+
+/* PDF导出时的全面颜色优化 - 确保所有颜色正确显示 */
+#market-report-content.market-pdf-export * {
+    /* 不强制统一文字颜色，保持原有颜色层次 */
+    box-shadow: none !important;
+    text-shadow: none !important;
+    /* 确保所有元素的颜色在PDF中正确显示 */
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+    /* 确保边框颜色正确显示 */
+    -webkit-border-image: none !important;
+    border-image: none !important;
+}
+
+/* PDF导出时的标题优化 */
+#market-report-content.market-pdf-export .market-report-title {
+    color: #2E7D32 !important;
+    font-weight: bold !important;
+    margin-bottom: 20px !important;
+}
+
+/* PDF导出时的分析维度标题优化 */
+#market-report-content.market-pdf-export .market-analysis-section h3 {
+    color: #4CAF50 !important;
+    font-weight: bold !important;
+    border-bottom: 2px solid #4CAF50 !important;
+    padding-bottom: 5px !important;
+    margin-bottom: 15px !important;
+}
+
+/* PDF导出时的关键要点优化 - 强制背景颜色 */
+#market-report-content.market-pdf-export .market-key-points {
+    background: #f8f9fa !important;
+    background-color: #f8f9fa !important;
+    border-left: 4px solid #4CAF50 !important;
+    padding: 15px !important;
+    margin: 15px 0 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+}
+
+/* PDF导出时的元数据信息优化 - 强制背景颜色 */
+#market-report-content.market-pdf-export .market-report-meta {
+    background: #f5f5f5 !important;
+    background-color: #f5f5f5 !important;
+    border: 1px solid #e0e0e0 !important;
+    padding: 15px !important;
+    margin-bottom: 20px !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+}
+
+/* PDF导出时的报告头部背景优化 */
+#market-report-content.market-pdf-export .market-report-header-section {
+    background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%) !important;
+    background-color: #4CAF50 !important;
+    color: white !important;
+    padding: 30px !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+}
+
+/* PDF导出时的元数据项背景优化 */
+#market-report-content.market-pdf-export .market-meta-item {
+    background: rgba(255, 255, 255, 0.2) !important;
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    padding: 10px 15px !important;
+    border-radius: 5px !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+}
+
+/* PDF导出时的分析维度背景优化 */
+#market-report-content.market-pdf-export .market-analysis-section {
+    background: #f8f9fa !important;
+    background-color: #f8f9fa !important;
+    border-left: 4px solid #4CAF50 !important;
+    padding: 20px !important;
+    margin-bottom: 20px !important;
+    border-radius: 8px !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+}
+
+/* PDF导出时隐藏不必要的元素 */
+#market-report-content.market-pdf-export .market-report-actions,
+#market-report-content.market-pdf-export .no-export {
+    display: none !important;
+}
+
+/* PDF导出时的文字颜色优化 */
+#market-report-content.market-pdf-export .market-report-title {
+    color: #2E7D32 !important;
+}
+
+#market-report-content.market-pdf-export .market-section-title {
+    color: #2E7D32 !important;
+}
+
+#market-report-content.market-pdf-export .market-analysis-title,
+#market-report-content.market-pdf-export .market-analysis-section h3 {
+    color: #4CAF50 !important;
+    border-bottom-color: #4CAF50 !important;
+}
+
+#market-report-content.market-pdf-export .market-highlights-title {
+    color: #2E7D32 !important;
+}
+
+#market-report-content.market-pdf-export .market-dimension-content,
+#market-report-content.market-pdf-export .market-summary-text,
+#market-report-content.market-pdf-export .market-conclusion-text,
+#market-report-content.market-pdf-export p {
+    color: #333 !important;
+}
+
+#market-report-content.market-pdf-export .market-generation-info {
+    color: #666 !important;
+}
+
+#market-report-content.market-pdf-export .market-score-number {
+    color: #FFD700 !important;
+    font-weight: bold !important;
+}
+
+/* PDF导出时的边框颜色优化 */
+#market-report-content.market-pdf-export .market-section {
+    border-color: #e0e0e0 !important;
+}
+
+#market-report-content.market-pdf-export .market-form-section,
+#market-report-content.market-pdf-export .market-analysis-section,
+#market-report-content.market-pdf-export .market-key-points,
+#market-report-content.market-pdf-export .market-highlights {
+    border-left-color: #4CAF50 !important;
+}
+
+#market-report-content.market-pdf-export .market-section-title {
+    border-bottom-color: #e0e0e0 !important;
+}
+
+#market-report-content.market-pdf-export .market-conclusion-section {
+    border-top-color: #4CAF50 !important;
+}
+
+/* PDF导出时的图标颜色优化 */
+#market-report-content.market-pdf-export .market-icon,
+#market-report-content.market-pdf-export i[class*="fa"] {
+    color: #4CAF50 !important;
+    font-size: 1.2em !important;
+}
+
+#market-report-content.market-pdf-export .market-report-header-section .market-icon,
+#market-report-content.market-pdf-export .market-report-header-section i[class*="fa"] {
+    color: white !important;
+}
+
+/* PDF导出时的按钮颜色优化 */
+#market-report-content.market-pdf-export .market-btn-primary {
+    background-color: #4CAF50 !important;
+    color: white !important;
+    border-color: #4CAF50 !important;
+}
+
+#market-report-content.market-pdf-export .market-dimension-score {
+    background-color: #4CAF50 !important;
+    color: white !important;
+}
+
+/* PDF导出时的分页控制 */
+#market-report-content.market-pdf-export {
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
+
+#market-report-content.market-pdf-export .market-analysis-section {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    margin-bottom: 25px !important;
+}
+
+/* PDF导出时的字体优化 */
+#market-report-content.market-pdf-export {
+    font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif !important;
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+}
+
+/* PDF导出时的间距优化 */
+#market-report-content.market-pdf-export p {
+    margin-bottom: 12px !important;
+}
+
+#market-report-content.market-pdf-export ul,
+#market-report-content.market-pdf-export ol {
+    margin-bottom: 15px !important;
+    padding-left: 20px !important;
+}
+
+#market-report-content.market-pdf-export li {
+    margin-bottom: 8px !important;
+}
+
+/* PDF导出成功提示样式 */
+.market-pdf-export-success {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #4CAF50;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+    z-index: 10000;
+    font-family: 'Microsoft YaHei', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    animation: slideInRight 0.3s ease-out;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}

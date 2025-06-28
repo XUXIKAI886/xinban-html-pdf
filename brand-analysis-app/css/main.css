@@ -49,10 +49,17 @@ body {
     padding: 40px 0;
 }
 
+/* 单模块布局的容器（保持向后兼容） */
 .container {
     max-width: 900px;
     margin: 0 auto;
     padding: 0 20px;
+}
+
+/* 双模块布局时的容器调整 */
+.dual-module-layout .container {
+    max-width: 100%;
+    padding: 0;
 }
 
 /* 区域样式 */
@@ -115,9 +122,9 @@ body {
     box-shadow: none;
 }
 
-/* 加载状态 */
+/* 加载状态 - 品牌分析模块专用 */
 .loading-overlay {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -126,7 +133,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 9999;
+    z-index: 1000;
+    border-radius: 10px;
 }
 
 .loading-content {

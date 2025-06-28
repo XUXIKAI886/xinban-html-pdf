@@ -3,28 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>品牌定位分析应用</title>
+    <title>智能分析应用平台</title>
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/form.css">
     <link rel="stylesheet" href="css/report.css">
     <link rel="stylesheet" href="css/pdf-styles.css">
+    <link rel="stylesheet" href="css/market-analysis.css?v=20250628-14">
 </head>
 <body>
     <div class="app-container">
         <!-- 应用头部 -->
         <header class="app-header">
-            <h1>品牌定位分析应用</h1>
-            <p class="subtitle">基于AI智能分析，快速生成专业的品牌定位报告</p>
+            <h1>智能分析应用平台</h1>
+            <p class="subtitle">基于AI智能分析，提供品牌定位分析和商圈调研分析服务</p>
         </header>
 
-        <!-- 主要内容区域 -->
-        <main class="main-content">
-            <!-- 输入表单区域 -->
-            <section id="input-section" class="section active">
-                <div class="container">
-                    <h2 class="section-title">店铺信息输入</h2>
+        <!-- 主要内容区域 - 双模块布局 -->
+        <main class="main-content dual-module-layout">
+            <!-- 左侧：品牌定位分析模块 -->
+            <div class="module-container brand-analysis-module">
+                <div class="module-header">
+                    <h2 class="module-title">品牌定位分析</h2>
+                    <p class="module-subtitle">快速生成专业的品牌定位报告</p>
+                </div>
+                <!-- 品牌定位分析 - 输入表单区域 -->
+                <section id="brand-input-section" class="section active">
+                    <div class="container">
+                        <h3 class="section-title">店铺信息输入</h3>
                     
-                    <form id="store-form" class="store-form">
+                        <form id="brand-store-form" class="store-form">
                         <!-- 基础信息 -->
                         <div class="form-section">
                             <h3 class="form-section-title">基础信息</h3>
@@ -119,7 +126,7 @@
 
                         <!-- 提交按钮 -->
                         <div class="form-actions">
-                            <button type="submit" id="generateBtn" class="btn btn-primary">
+                            <button type="submit" id="brand-generateBtn" class="btn btn-primary">
                                 <span class="btn-text">生成品牌分析报告</span>
                                 <span class="btn-loading" style="display: none;">
                                     <span class="loading-spinner"></span>
@@ -129,32 +136,236 @@
                         </div>
                     </form>
                 </div>
-            </section>
+                </section>
 
-            <!-- 报告展示区域 -->
-            <section id="report-section" class="section" style="display: none;">
-                <div class="container">
-                    <div class="report-header">
-                        <h2 class="section-title">品牌定位分析报告</h2>
-                        <div class="report-actions">
-                            <button id="editBtn" class="btn btn-secondary">重新编辑</button>
-                            <button id="downloadBtn" class="btn btn-primary">下载PDF</button>
+                <!-- 品牌定位分析 - 报告展示区域 -->
+                <section id="brand-report-section" class="section" style="display: none;">
+                    <div class="container">
+                        <div class="report-header">
+                            <h3 class="section-title">品牌定位分析报告</h3>
+                            <div class="report-actions">
+                                <button id="brand-editBtn" class="btn btn-secondary">重新编辑</button>
+                                <button id="brand-downloadBtn" class="btn btn-primary">下载PDF</button>
+                            </div>
+                        </div>
+
+                        <!-- 报告内容将在这里动态生成 -->
+                        <div id="brand-report-content" class="report-content">
+                            <!-- 报告内容将通过JavaScript动态插入 -->
                         </div>
                     </div>
-                    
-                    <!-- 报告内容将在这里动态生成 -->
-                    <div id="report-content" class="report-content">
-                        <!-- 报告内容将通过JavaScript动态插入 -->
+                </section>
+
+                <!-- 品牌定位分析 - 加载状态 -->
+                <div id="brand-loading-overlay" class="loading-overlay" style="display: none;">
+                    <div class="loading-content">
+                        <div class="loading-spinner-large"></div>
+                        <p class="loading-text">正在调用AI生成品牌分析报告...</p>
+                        <p class="loading-subtext">请稍候，这可能需要10-30秒</p>
                     </div>
                 </div>
-            </section>
+            </div>
 
-            <!-- 加载状态 -->
-            <div id="loading-overlay" class="loading-overlay" style="display: none;">
-                <div class="loading-content">
-                    <div class="loading-spinner-large"></div>
-                    <p class="loading-text">正在调用AI生成分析报告...</p>
-                    <p class="loading-subtext">请稍候，这可能需要10-30秒</p>
+            <!-- 右侧：商圈调研分析模块 -->
+            <div class="module-container market-analysis-module">
+                <div class="module-header">
+                    <h2 class="module-title">商圈调研分析</h2>
+                    <p class="module-subtitle">基于AI智能分析商圈调研报告</p>
+                </div>
+
+                <!-- 商圈调研分析 - 输入表单区域 -->
+                <section id="market-input-section" class="market-section active">
+                    <div class="market-container">
+                        <h3 class="market-section-title">商圈调研信息输入</h3>
+
+                        <form id="market-survey-form" class="market-form">
+                            <!-- 基础信息 -->
+                            <div class="market-form-section">
+                                <h4 class="market-form-section-title">基础信息</h4>
+
+                                <div class="market-form-row">
+                                    <div class="market-form-group">
+                                        <label for="market-areaName">商圈名称 <span class="required">*</span></label>
+                                        <input type="text" id="market-areaName" name="areaName" required
+                                               placeholder="请输入商圈名称" maxlength="50">
+                                        <div class="error-message" id="market-areaName-error"></div>
+                                    </div>
+
+                                    <div class="market-form-group">
+                                        <label for="market-location">地理位置 <span class="required">*</span></label>
+                                        <input type="text" id="market-location" name="location" required
+                                               placeholder="请输入具体地理位置，如：北京市朝阳区三里屯" maxlength="100">
+                                        <div class="error-message" id="market-location-error"></div>
+                                    </div>
+                                </div>
+
+                                <div class="market-form-group">
+                                    <label for="market-areaType">商圈类型</label>
+                                    <select id="market-areaType" name="areaType" class="market-select">
+                                        <option value="">请选择商圈类型</option>
+                                        <option value="商务区">商务区</option>
+                                        <option value="购物中心">购物中心</option>
+                                        <option value="住宅区">住宅区</option>
+                                        <option value="学校周边">学校周边</option>
+                                        <option value="交通枢纽">交通枢纽</option>
+                                        <option value="旅游景点">旅游景点</option>
+                                        <option value="工业园区">工业园区</option>
+                                        <option value="混合区域">混合区域</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- 详细信息 -->
+                            <div class="market-form-section">
+                                <h4 class="market-form-section-title">详细信息</h4>
+
+                                <div class="market-form-row">
+                                    <div class="market-form-group">
+                                        <label for="market-population">人流量情况</label>
+                                        <select id="market-population" name="population" class="market-select">
+                                            <option value="">请选择人流量</option>
+                                            <option value="高密度">高密度（繁华地段）</option>
+                                            <option value="中密度">中密度（一般地段）</option>
+                                            <option value="低密度">低密度（偏僻地段）</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="market-form-group">
+                                        <label for="market-competition">竞争情况</label>
+                                        <select id="market-competition" name="competition" class="market-select">
+                                            <option value="">请选择竞争情况</option>
+                                            <option value="激烈">激烈（同类店铺很多）</option>
+                                            <option value="中等">中等（有一定竞争）</option>
+                                            <option value="较少">较少（竞争对手不多）</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="market-form-group">
+                                    <label for="market-targetCustomers">主要客群</label>
+                                    <div class="market-checkbox-group">
+                                        <label class="market-checkbox-item">
+                                            <input type="checkbox" name="targetCustomers" value="上班族">
+                                            <span>上班族</span>
+                                        </label>
+                                        <label class="market-checkbox-item">
+                                            <input type="checkbox" name="targetCustomers" value="学生">
+                                            <span>学生</span>
+                                        </label>
+                                        <label class="market-checkbox-item">
+                                            <input type="checkbox" name="targetCustomers" value="居民">
+                                            <span>居民</span>
+                                        </label>
+                                        <label class="market-checkbox-item">
+                                            <input type="checkbox" name="targetCustomers" value="游客">
+                                            <span>游客</span>
+                                        </label>
+                                        <label class="market-checkbox-item">
+                                            <input type="checkbox" name="targetCustomers" value="购物者">
+                                            <span>购物者</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="market-form-group">
+                                    <label for="market-features">商圈特色</label>
+                                    <textarea id="market-features" name="features" rows="3"
+                                              placeholder="请描述商圈的特色和优势，如：交通便利、消费水平、周边设施等" maxlength="500"></textarea>
+                                </div>
+
+                                <div class="market-form-group">
+                                    <label for="market-challenges">面临挑战</label>
+                                    <textarea id="market-challenges" name="challenges" rows="3"
+                                              placeholder="请描述商圈面临的挑战和问题，如：租金高、停车难、竞争激烈等" maxlength="500"></textarea>
+                                </div>
+                            </div>
+
+                            <!-- 竞争对手文档分析 -->
+                            <div class="market-form-section">
+                                <h4 class="market-form-section-title">竞争对手文档分析（可选）</h4>
+                                <p class="market-form-description">
+                                    上传包含竞争对手信息的文档（支持图片、Excel、PDF、TXT等格式），AI将自动分析竞争对手的产品、定价策略，并为您提供针对性的优化建议。
+                                </p>
+
+                                <div class="market-form-group">
+                                    <label for="market-storeName">您的店铺名称</label>
+                                    <input type="text" id="market-storeName" name="storeName"
+                                           placeholder="请输入您的店铺名称，用于区分竞争对手" maxlength="50">
+                                    <div class="error-message" id="market-storeName-error"></div>
+                                </div>
+
+                                <div class="market-form-group">
+                                    <label for="market-document">竞争对手文档</label>
+                                    <div class="market-file-upload-area" id="market-file-upload-area">
+                                        <input type="file" id="market-document" name="document"
+                                               accept=".jpg,.jpeg,.png,.gif,.pdf,.xlsx,.xls,.txt,.doc,.docx"
+                                               style="display: none;">
+                                        <div class="market-file-upload-content">
+                                            <i class="fas fa-cloud-upload-alt market-upload-icon"></i>
+                                            <p class="market-upload-text">点击上传或拖拽文档到此处</p>
+                                            <p class="market-upload-hint">支持图片、PDF、Excel、Word、TXT等格式，最大10MB</p>
+                                        </div>
+                                        <div class="market-file-preview" id="market-file-preview" style="display: none;">
+                                            <div class="market-file-info">
+                                                <i class="fas fa-file market-file-icon"></i>
+                                                <span class="market-file-name"></span>
+                                                <span class="market-file-size"></span>
+                                                <button type="button" class="market-file-remove" title="移除文件">
+                                                    <i class="fas fa-times"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="error-message" id="market-document-error"></div>
+                                </div>
+
+                                <div class="market-form-group">
+                                    <label class="market-checkbox-item">
+                                        <input type="checkbox" id="market-enableDocumentAnalysis" name="enableDocumentAnalysis">
+                                        <span>启用文档分析功能（将使用AI分析上传的竞争对手文档）</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- 提交按钮 -->
+                            <div class="market-form-actions">
+                                <button type="submit" id="market-generateBtn" class="market-btn market-btn-primary">
+                                    <span class="market-btn-text">生成商圈分析报告</span>
+                                    <span class="market-btn-loading" style="display: none;">
+                                        <span class="market-loading-spinner"></span>
+                                        正在生成中...
+                                    </span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+
+                <!-- 商圈调研分析 - 报告展示区域 -->
+                <section id="market-report-section" class="market-section" style="display: none;">
+                    <div class="market-container">
+                        <div class="market-report-header">
+                            <h3 class="market-section-title">商圈调研分析报告</h3>
+                            <div class="market-report-actions">
+                                <button id="market-editBtn" class="market-btn market-btn-secondary">重新编辑</button>
+                                <button id="market-downloadBtn" class="market-btn market-btn-primary">下载PDF</button>
+                            </div>
+                        </div>
+
+                        <!-- 报告内容将在这里动态生成 -->
+                        <div id="market-report-content" class="market-report-content">
+                            <!-- 报告内容将通过JavaScript动态插入 -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 商圈调研分析 - 加载状态 -->
+                <div id="market-loading-overlay" class="market-loading-overlay" style="display: none;">
+                    <div class="market-loading-content">
+                        <div class="market-loading-spinner-large"></div>
+                        <p class="market-loading-text">正在调用AI生成商圈分析报告...</p>
+                        <p class="market-loading-subtext">请稍候，这可能需要10-30秒</p>
+                    </div>
                 </div>
             </div>
         </main>
@@ -173,16 +384,25 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
-    <!-- JavaScript文件 - 可变高度PDF版本 -->
-    <script src="templates/prompt-template.js?v=20250628-9"></script>
-    <script src="js/api-client.js?v=20250628-9"></script>
-    <script src="js/form-handler.js?v=20250628-9"></script>
-    <script src="js/content-generator.js?v=20250628-9"></script>
-    <script src="js/report-renderer.js?v=20250628-9"></script>
+    <!-- JavaScript文件 - 品牌定位分析模块 -->
+    <script src="templates/prompt-template.js?v=20250628-10"></script>
+    <script src="js/api-client.js?v=20250628-10"></script>
+    <script src="js/form-handler.js?v=20250628-10"></script>
+    <script src="js/content-generator.js?v=20250628-10"></script>
+    <script src="js/report-renderer.js?v=20250628-10"></script>
     <!-- 新的html-to-image PDF导出器 - 可变高度PDF -->
-    <script src="js/html-to-image-pdf-exporter.js?v=20250628-9"></script>
+    <script src="js/html-to-image-pdf-exporter.js?v=20250628-13"></script>
     <!-- 保留原有PDF导出器作为备用 -->
-    <script src="js/pdf-exporter.js?v=20250628-9"></script>
-    <script src="js/app.js?v=20250628-9"></script>
+    <script src="js/pdf-exporter.js?v=20250628-10"></script>
+    <script src="js/app.js?v=20250628-10"></script>
+
+    <!-- JavaScript文件 - 商圈调研分析模块 -->
+    <script src="templates/market-prompt-template.js?v=20250628-14"></script>
+    <script src="js/market-api-client.js?v=20250628-10"></script>
+    <script src="js/market-form-handler.js?v=20250628-14"></script>
+    <script src="js/market-content-generator.js?v=20250628-14"></script>
+    <script src="js/market-report-renderer.js?v=20250628-10"></script>
+    <script src="js/market-pdf-exporter.js?v=20250628-10"></script>
+    <script src="js/market-app.js?v=20250628-14"></script>
 </body>
 </html>

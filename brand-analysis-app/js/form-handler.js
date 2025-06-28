@@ -5,7 +5,7 @@
 
 class FormHandler {
     constructor() {
-        this.form = document.getElementById('store-form');
+        this.form = document.getElementById('brand-store-form');
         this.validationRules = this.initValidationRules();
         this.init();
     }

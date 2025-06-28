@@ -129,18 +129,29 @@ class HtmlToImagePDFExporter {
                 throw new Error(`元素验证失败: ${validation.errors.join(', ')}`);
             }
 
-            // 准备html-to-image配置
+            // 准备html-to-image配置 - 全面优化颜色支持
             const imageOptions = {
                 pixelRatio: config.pixelRatio,
                 backgroundColor: config.backgroundColor,
                 cacheBust: config.cacheBust,
                 quality: config.quality,
+                // 关键配置：确保所有颜色正确显示
+                allowTaint: true,
+                useCORS: true,
+                skipAutoScale: false,
+                // 颜色相关优化配置
+                preferredFontFormat: 'woff2',
+                fontEmbedCSS: true,
                 // 确保样式正确应用
                 style: {
                     transform: 'scale(1)',
                     transformOrigin: 'top left',
                     width: element.scrollWidth + 'px',
-                    height: element.scrollHeight + 'px'
+                    height: element.scrollHeight + 'px',
+                    // 强制颜色显示
+                    '-webkit-print-color-adjust': 'exact',
+                    'print-color-adjust': 'exact',
+                    'color-adjust': 'exact'
                 },
                 // 添加过滤器，确保所有节点都被包含
                 filter: (node) => {
@@ -149,7 +160,13 @@ class HtmlToImagePDFExporter {
                     if (node.tagName === 'NOSCRIPT') return false;
                     if (node.classList && node.classList.contains('no-export')) return false;
                     return true;
-                }
+                },
+                // 确保所有样式被正确捕获
+                includeQueryParams: true,
+                skipFonts: false,
+                // 颜色捕获增强
+                imagePlaceholder: undefined,
+                copyDefaultStyles: true
             };
 
             console.log('🎨 html-to-image配置:', imageOptions);

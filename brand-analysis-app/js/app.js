@@ -63,23 +63,23 @@ class BrandAnalysisApp {
      */
     bindEvents() {
         // 表单提交事件
-        const form = document.getElementById('store-form');
+        const form = document.getElementById('brand-store-form');
         if (form) {
             form.addEventListener('submit', (e) => this.handleFormSubmit(e));
         }
-        
+
         // 重新编辑按钮
-        const editBtn = document.getElementById('editBtn');
+        const editBtn = document.getElementById('brand-editBtn');
         if (editBtn) {
             editBtn.addEventListener('click', () => this.showInputSection());
         }
-        
+
         // 下载PDF按钮
-        const downloadBtn = document.getElementById('downloadBtn');
+        const downloadBtn = document.getElementById('brand-downloadBtn');
         if (downloadBtn) {
             downloadBtn.addEventListener('click', () => this.downloadPDF());
         }
-        
+
         // 价格滑块事件
         const priceRange = document.getElementById('priceRange');
         const priceValue = document.getElementById('priceValue');
@@ -160,9 +160,9 @@ class BrandAnalysisApp {
      */
     showInputSection() {
         this.currentSection = 'input';
-        document.getElementById('input-section').style.display = 'block';
-        document.getElementById('report-section').style.display = 'none';
-        
+        document.getElementById('brand-input-section').style.display = 'block';
+        document.getElementById('brand-report-section').style.display = 'none';
+
         // 滚动到顶部
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -172,13 +172,13 @@ class BrandAnalysisApp {
      */
     showReportSection() {
         this.currentSection = 'report';
-        document.getElementById('input-section').style.display = 'none';
-        document.getElementById('report-section').style.display = 'block';
-        
+        document.getElementById('brand-input-section').style.display = 'none';
+        document.getElementById('brand-report-section').style.display = 'block';
+
         // 添加动画效果
-        const reportSection = document.getElementById('report-section');
+        const reportSection = document.getElementById('brand-report-section');
         reportSection.classList.add('fade-in');
-        
+
         // 滚动到顶部
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -187,13 +187,13 @@ class BrandAnalysisApp {
      * 显示加载状态
      */
     showLoading() {
-        const loadingOverlay = document.getElementById('loading-overlay');
-        const generateBtn = document.getElementById('generateBtn');
-        
+        const loadingOverlay = document.getElementById('brand-loading-overlay');
+        const generateBtn = document.getElementById('brand-generateBtn');
+
         if (loadingOverlay) {
             loadingOverlay.style.display = 'flex';
         }
-        
+
         if (generateBtn) {
             generateBtn.disabled = true;
             generateBtn.querySelector('.btn-text').style.display = 'none';
@@ -205,13 +205,13 @@ class BrandAnalysisApp {
      * 隐藏加载状态
      */
     hideLoading() {
-        const loadingOverlay = document.getElementById('loading-overlay');
-        const generateBtn = document.getElementById('generateBtn');
-        
+        const loadingOverlay = document.getElementById('brand-loading-overlay');
+        const generateBtn = document.getElementById('brand-generateBtn');
+
         if (loadingOverlay) {
             loadingOverlay.style.display = 'none';
         }
-        
+
         if (generateBtn) {
             generateBtn.disabled = false;
             generateBtn.querySelector('.btn-text').style.display = 'inline';
@@ -249,7 +249,7 @@ class BrandAnalysisApp {
 
         try {
             // 检查报告内容是否存在
-            const reportContent = document.getElementById('report-content');
+            const reportContent = document.getElementById('brand-report-content');
             if (!reportContent || !reportContent.innerHTML.trim()) {
                 this.showError('报告内容为空，请先生成报告');
                 return;
@@ -279,7 +279,7 @@ class BrandAnalysisApp {
             if (this.pdfExportMethod === 'html-to-image') {
                 console.log('尝试备用方案...');
                 try {
-                    const reportContent = document.getElementById('report-content');
+                    const reportContent = document.getElementById('brand-report-content');
                     const fileName = `${this.storeData?.storeName || '店铺'}品牌定位设计.pdf`;
                     await this.directHTMLToJPGToPDF(reportContent, fileName);
                     this.showSuccess('PDF导出成功！（使用备用方案）');
@@ -641,9 +641,10 @@ class BrandAnalysisApp {
     }
 }
 
-// 当DOM加载完成后初始化应用
+// 当DOM加载完成后初始化品牌分析应用
 document.addEventListener('DOMContentLoaded', () => {
-    window.app = new BrandAnalysisApp();
+    window.brandAnalysisApp = new BrandAnalysisApp();
+    console.log('[品牌分析] 品牌定位分析应用已启动');
 });
 
 // 导出类供其他模块使用

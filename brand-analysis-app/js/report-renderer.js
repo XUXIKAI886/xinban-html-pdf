@@ -5,7 +5,7 @@
 
 class ReportRenderer {
     constructor() {
-        this.reportContainer = document.getElementById('report-content');
+        this.reportContainer = document.getElementById('brand-report-content');
     }
     
     /**
@@ -208,7 +208,7 @@ class ReportRenderer {
                 <h3>报告生成出现问题</h3>
                 <p class="error-message">${message}</p>
                 <div class="error-actions">
-                    <button onclick="window.app.showInputSection()" class="btn btn-primary">
+                    <button onclick="window.brandAnalysisApp.showInputSection()" class="btn btn-primary">
                         返回重新生成
                     </button>
                 </div>
