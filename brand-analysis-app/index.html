@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>品牌定位分析应用</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/form.css">
+    <link rel="stylesheet" href="css/report.css">
+    <link rel="stylesheet" href="css/pdf-styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 应用头部 -->
+        <header class="app-header">
+            <h1>品牌定位分析应用</h1>
+            <p class="subtitle">基于AI智能分析，快速生成专业的品牌定位报告</p>
+        </header>
+
+        <!-- 主要内容区域 -->
+        <main class="main-content">
+            <!-- 输入表单区域 -->
+            <section id="input-section" class="section active">
+                <div class="container">
+                    <h2 class="section-title">店铺信息输入</h2>
+                    
+                    <form id="store-form" class="store-form">
+                        <!-- 基础信息 -->
+                        <div class="form-section">
+                            <h3 class="form-section-title">基础信息</h3>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="storeName">店铺名称 <span class="required">*</span></label>
+                                    <input type="text" id="storeName" name="storeName" required 
+                                           placeholder="请输入店铺名称" maxlength="50">
+                                    <div class="error-message" id="storeName-error"></div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="category">经营品类 <span class="required">*</span></label>
+                                    <select id="category" name="category" required>
+                                        <option value="">请选择经营品类</option>
+                                        <option value="美食 > 快餐简餐 > 轻食/沙拉/健康餐">轻食/沙拉/健康餐</option>
+                                        <option value="美食 > 快餐简餐 > 盖饭/丼饭">盖饭/丼饭</option>
+                                        <option value="美食 > 快餐简餐 > 炒饭/焖饭">炒饭/焖饭</option>
+                                        <option value="美食 > 中餐 > 川菜">川菜</option>
+                                        <option value="美食 > 中餐 > 湘菜">湘菜</option>
+                                        <option value="美食 > 中餐 > 粤菜">粤菜</option>
+                                        <option value="美食 > 小吃夜宵 > 烧烤">烧烤</option>
+                                        <option value="美食 > 小吃夜宵 > 麻辣烫">麻辣烫</option>
+                                        <option value="美食 > 饮品 > 奶茶果汁">奶茶果汁</option>
+                                        <option value="美食 > 饮品 > 咖啡">咖啡</option>
+                                        <option value="custom">其他（自定义）</option>
+                                    </select>
+                                    <input type="text" id="customCategory" name="customCategory" 
+                                           placeholder="请输入自定义品类" style="display: none;" maxlength="100">
+                                    <div class="error-message" id="category-error"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="address">店铺地址</label>
+                                <input type="text" id="address" name="address" 
+                                       placeholder="请输入店铺地址" maxlength="200">
+                            </div>
+                        </div>
+
+                        <!-- 详细信息 -->
+                        <div class="form-section">
+                            <h3 class="form-section-title">详细信息</h3>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="targetGroup">目标客群</label>
+                                    <div class="checkbox-group">
+                                        <label class="checkbox-item">
+                                            <input type="checkbox" name="targetGroup" value="白领上班族">
+                                            <span>白领上班族</span>
+                                        </label>
+                                        <label class="checkbox-item">
+                                            <input type="checkbox" name="targetGroup" value="学生群体">
+                                            <span>学生群体</span>
+                                        </label>
+                                        <label class="checkbox-item">
+                                            <input type="checkbox" name="targetGroup" value="健身爱好者">
+                                            <span>健身爱好者</span>
+                                        </label>
+                                        <label class="checkbox-item">
+                                            <input type="checkbox" name="targetGroup" value="年轻消费者">
+                                            <span>年轻消费者</span>
+                                        </label>
+                                        <label class="checkbox-item">
+                                            <input type="checkbox" name="targetGroup" value="家庭用户">
+                                            <span>家庭用户</span>
+                                        </label>
+                                        <label class="checkbox-item">
+                                            <input type="checkbox" name="targetGroup" value="夜宵用户">
+                                            <span>夜宵用户</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="priceRange">价格区间</label>
+                                    <div class="price-range">
+                                        <input type="range" id="priceRange" name="priceRange" 
+                                               min="10" max="100" value="25" step="5">
+                                        <div class="price-display">
+                                            人均消费：<span id="priceValue">25</span>元
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="mainProducts">主营产品</label>
+                                    <input type="text" id="mainProducts" name="mainProducts" 
+                                           placeholder="请输入主营产品，如：日式盖饭、炒饭、轻食沙拉" maxlength="200">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="features">经营特色</label>
+                                <textarea id="features" name="features" rows="3" 
+                                          placeholder="请描述店铺的经营特色和优势，如：健康低脂、新鲜食材、快速出餐等" maxlength="500"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- 提交按钮 -->
+                        <div class="form-actions">
+                            <button type="submit" id="generateBtn" class="btn btn-primary">
+                                <span class="btn-text">生成品牌分析报告</span>
+                                <span class="btn-loading" style="display: none;">
+                                    <span class="loading-spinner"></span>
+                                    正在生成中...
+                                </span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- 报告展示区域 -->
+            <section id="report-section" class="section" style="display: none;">
+                <div class="container">
+                    <div class="report-header">
+                        <h2 class="section-title">品牌定位分析报告</h2>
+                        <div class="report-actions">
+                            <button id="editBtn" class="btn btn-secondary">重新编辑</button>
+                            <button id="downloadBtn" class="btn btn-primary">下载PDF</button>
+                        </div>
+                    </div>
+                    
+                    <!-- 报告内容将在这里动态生成 -->
+                    <div id="report-content" class="report-content">
+                        <!-- 报告内容将通过JavaScript动态插入 -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- 加载状态 -->
+            <div id="loading-overlay" class="loading-overlay" style="display: none;">
+                <div class="loading-content">
+                    <div class="loading-spinner-large"></div>
+                    <p class="loading-text">正在调用AI生成分析报告...</p>
+                    <p class="loading-subtext">请稍候，这可能需要10-30秒</p>
+                </div>
+            </div>
+        </main>
+
+        <!-- 页脚 -->
+        <footer class="app-footer">
+            <p>&copy; 2024 品牌定位分析应用 - 基于DeepSeek AI技术</p>
+        </footer>
+    </div>
+
+    <!-- 第三方库 -->
+    <!-- html-to-image: 优化的PDF导出方案 -->
+    <script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.13/dist/html-to-image.js"></script>
+    <!-- 保留html2canvas作为备用方案 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <!-- JavaScript文件 - 可变高度PDF版本 -->
+    <script src="templates/prompt-template.js?v=20250628-9"></script>
+    <script src="js/api-client.js?v=20250628-9"></script>
+    <script src="js/form-handler.js?v=20250628-9"></script>
+    <script src="js/content-generator.js?v=20250628-9"></script>
+    <script src="js/report-renderer.js?v=20250628-9"></script>
+    <!-- 新的html-to-image PDF导出器 - 可变高度PDF -->
+    <script src="js/html-to-image-pdf-exporter.js?v=20250628-9"></script>
+    <!-- 保留原有PDF导出器作为备用 -->
+    <script src="js/pdf-exporter.js?v=20250628-9"></script>
+    <script src="js/app.js?v=20250628-9"></script>
+</body>
+</html>

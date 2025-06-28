@@ -1,0 +1,265 @@
+/* PDF专用样式 - 确保在PDF转换时正确显示 */
+
+/* 基础样式重置 */
+.pdf-container * {
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    background: transparent !important;
+    color: #333 !important;
+    font-family: 'Microsoft YaHei', Arial, sans-serif !important;
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+    text-decoration: none !important;
+    list-style: none !important;
+}
+
+/* 容器样式 */
+.pdf-container {
+    width: 100% !important;
+    max-width: none !important;
+    background: white !important;
+    color: #333 !important;
+    font-family: 'Microsoft YaHei', Arial, sans-serif !important;
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+    padding: 20px !important;
+}
+
+/* 报告标题 */
+.pdf-container .report-title,
+.pdf-container h1 {
+    color: #2d3e50 !important;
+    font-size: 24px !important;
+    font-weight: bold !important;
+    text-align: center !important;
+    margin-bottom: 20px !important;
+    padding-bottom: 10px !important;
+    border-bottom: 2px solid #333 !important;
+}
+
+/* 副标题 */
+.pdf-container .report-subtitle,
+.pdf-container .report-date {
+    color: #666 !important;
+    font-size: 12px !important;
+    text-align: center !important;
+    margin-bottom: 10px !important;
+}
+
+/* 店铺信息区域 */
+.pdf-container .store-info {
+    background: #f8f9fa !important;
+    border: 1px solid #333 !important;
+    border-radius: 5px !important;
+    padding: 15px !important;
+    margin-bottom: 20px !important;
+}
+
+.pdf-container .store-info h3 {
+    color: #2d3e50 !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    margin-bottom: 10px !important;
+}
+
+.pdf-container .info-item {
+    margin-bottom: 5px !important;
+    font-size: 14px !important;
+}
+
+.pdf-container .info-label {
+    color: #2d3e50 !important;
+    font-weight: bold !important;
+    display: inline !important;
+}
+
+.pdf-container .info-value {
+    color: #333 !important;
+    display: inline !important;
+}
+
+/* 分析区块 */
+.pdf-container .analysis-section {
+    background: white !important;
+    border: 1px solid #333 !important;
+    border-radius: 5px !important;
+    padding: 15px !important;
+    margin-bottom: 15px !important;
+    page-break-inside: avoid !important;
+}
+
+/* 区块标题 */
+.pdf-container .section-title,
+.pdf-container .analysis-section h2,
+.pdf-container .analysis-section h3 {
+    color: #1e88e5 !important;
+    font-size: 18px !important;
+    font-weight: bold !important;
+    margin-bottom: 10px !important;
+    padding-bottom: 5px !important;
+    border-bottom: 1px solid #333 !important;
+}
+
+/* 列表样式 */
+.pdf-container ul,
+.pdf-container ol {
+    margin: 10px 0 !important;
+    padding-left: 20px !important;
+    list-style: disc !important;
+}
+
+.pdf-container li {
+    color: #333 !important;
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+    margin-bottom: 5px !important;
+    list-style: disc !important;
+    display: list-item !important;
+}
+
+.pdf-container li::marker {
+    color: #333 !important;
+}
+
+/* 强调文本 */
+.pdf-container strong,
+.pdf-container b {
+    color: #2d3e50 !important;
+    font-weight: bold !important;
+}
+
+.pdf-container em,
+.pdf-container i {
+    color: #1e88e5 !important;
+    font-style: italic !important;
+}
+
+/* 段落 */
+.pdf-container p {
+    color: #333 !important;
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+    margin-bottom: 10px !important;
+}
+
+/* 表格样式 */
+.pdf-container table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    margin: 10px 0 !important;
+}
+
+.pdf-container th,
+.pdf-container td {
+    border: 1px solid #333 !important;
+    padding: 8px !important;
+    text-align: left !important;
+    color: #333 !important;
+    font-size: 12px !important;
+}
+
+.pdf-container th {
+    background: #f0f0f0 !important;
+    font-weight: bold !important;
+}
+
+/* 分页控制 */
+.pdf-container .page-break {
+    page-break-before: always !important;
+}
+
+.pdf-container .no-break {
+    page-break-inside: avoid !important;
+}
+
+/* 隐藏不需要的元素 */
+.pdf-container .no-print,
+.pdf-container .btn,
+.pdf-container button,
+.pdf-container .report-actions {
+    display: none !important;
+}
+
+/* 确保所有文本可见 */
+.pdf-container * {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+}
+
+.pdf-container span,
+.pdf-container a {
+    display: inline !important;
+}
+
+.pdf-container ul,
+.pdf-container ol {
+    display: block !important;
+}
+
+.pdf-container li {
+    display: list-item !important;
+}
+
+/* 特殊元素处理 */
+.pdf-container .highlight {
+    color: #e53935 !important;
+    font-weight: bold !important;
+    background: transparent !important;
+}
+
+.pdf-container .emphasis {
+    color: #1e88e5 !important;
+    font-weight: 500 !important;
+    background: transparent !important;
+}
+
+/* 元数据信息 */
+.pdf-container .report-metadata {
+    border-top: 1px solid #333 !important;
+    padding-top: 15px !important;
+    margin-top: 20px !important;
+    font-size: 12px !important;
+    color: #666 !important;
+}
+
+.pdf-container .metadata-item {
+    margin-bottom: 5px !important;
+}
+
+.pdf-container .metadata-label {
+    font-weight: bold !important;
+    color: #333 !important;
+}
+
+.pdf-container .metadata-value {
+    color: #666 !important;
+}
+
+/* 确保背景色正确 */
+.pdf-container,
+.pdf-container * {
+    background-color: transparent !important;
+    background-image: none !important;
+    background: transparent !important;
+}
+
+.pdf-container {
+    background: white !important;
+}
+
+.pdf-container .store-info {
+    background: #f8f9fa !important;
+}
+
+/* 移除所有阴影和特效 */
+.pdf-container * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+    filter: none !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+}
